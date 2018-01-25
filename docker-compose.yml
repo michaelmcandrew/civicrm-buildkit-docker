@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+
+  nginx:
+    build: nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "amp:/home/buildkit/.amp"
+    links:
+      - fpm
+  fpm:
+    build: fpm
+    volumes:
+      - "./build:/home/buildkit/civicrm-buildkit/build"
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: buildkit
+
+  cli:
+    build: cli
+    volumes:
+      - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "amp:/home/buildkit/.amp"
+
+  mail:
+    image: djfarrelly/maildev
+
+volumes:
+  amp:
