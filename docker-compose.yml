@@ -32,5 +32,15 @@ services:
   mail:
     image: djfarrelly/maildev
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    links:
+      - mysql:mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: buildkit
+      PMA_HOST: mysql
+
 volumes:
   amp:
