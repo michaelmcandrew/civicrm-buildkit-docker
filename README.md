@@ -1,10 +1,8 @@
 # CiviCRM buildkit on Docker
 
-A buildkit oriented docker set up for CiviCRM.
+A buildkit oriented docker set up for CiviCRM. This repository creates a CiviCRM development environment based on buildkit.
 
-This repository creates a CiviCRM development environment based on buildkit.
-
-It roughly follows the Docker principles of isolating services in containers (rather than creating an entire set up in a single container) which should make it easy to try out different versions and flavours of the various services.
+It tries to follow the Docker principles of isolating services in containers (rather than munging the whole set up into a single container) in order to make it easier to experiment with different versions and flavours of the various services.
 
 * `nginx` from nginx: serves the development sites
 * `fpm` from php-fpm: processes php requests from nginx
@@ -23,16 +21,14 @@ The `civicrm-buildkit/build` directory is bind mounted at `./build` for local de
 4. Create a dmaster build with `docker-compose exec cli civibuild create dmaster`
 5. The build will be available at `./build/dmaster`
 
-## Browsing sites
+## Tips
 
-Buildkit is designed on the assumption everything is happening on the same host. We have to jump through an extra hoop in order to browse the site that we created above.
+### Browsing sites
 
-civicrm-buildkit-docker creates sites on port 8080 and forwards this port to the host.
-
-By adding dmaster.dev to our local hosts file, we should be able to browse the site at http://dmaster.dev:8080
+`civibuild` runs in a container and cannot update `/etc/hosts` on the hosts machine - you need to manually configure a `/etc/hosts` entry. `civibuild` is configured with the following URL_TEMPLATE: `http://%SITE_NAME%.buildkit:8080`. port 8080 on nginx is forwards to 8080 on the host. To access a site from the local machine add an entry to `/etc/hosts` along the lines of `127.0.0.1 %SITE_NAME%.buildkit`.
 
 # Next steps
 
+* Remove need to set up aliases, etc. on the host. Might require a rethink / new method for creating sites with buildkit
 * Configure maildev for better mail testing.
 * Decide on whether we should use nginx or apache (giving the option of either seems a bit wrong if we are trying to standardise on a stack)
-*
