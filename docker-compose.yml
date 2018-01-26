@@ -29,9 +29,6 @@ services:
       - "./build:/home/buildkit/civicrm-buildkit/build"
       - "amp:/home/buildkit/.amp"
 
-  mail:
-    image: djfarrelly/maildev
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -39,8 +36,12 @@ services:
     links:
       - mysql:mysql
     environment:
-      MYSQL_ROOT_PASSWORD: buildkit
       PMA_HOST: mysql
+
+  mail:
+    image: djfarrelly/maildev
+    ports:
+      - "8082:80"
 
 volumes:
   amp:
