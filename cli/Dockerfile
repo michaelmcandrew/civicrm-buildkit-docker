@@ -86,3 +86,6 @@ COPY --chown=buildkit:buildkit civibuild.conf /home/buildkit/civicrm-buildkit/ap
 
 # Custom nginx vhost that passes php to fpm container
 COPY --chown=buildkit:buildkit nginx-vhost.php /home/buildkit/civicrm-buildkit/.amp/nginx-vhost.php
+
+# We catch mail with maildev, so no need to disable outbound email
+RUN rm /home/buildkit/civicrm-buildkit/app/civicrm.settings.d/100-mail.php

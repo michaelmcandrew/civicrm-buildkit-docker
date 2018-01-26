@@ -27,8 +27,14 @@ The `civicrm-buildkit/build` directory is bind mounted at `./build` for local de
 
 `civibuild` runs in a container and cannot update `/etc/hosts` on the hosts machine - you need to manually configure a `/etc/hosts` entry. `civibuild` is configured with the following URL_TEMPLATE: `http://%SITE_NAME%.buildkit:8080`. port 8080 on nginx is forwards to 8080 on the host. To access a site from the local machine add an entry to `/etc/hosts` along the lines of `127.0.0.1 %SITE_NAME%.buildkit`.
 
+### Viewing sent email
+
+By default, buildkit disables outbound mail. We stop buildkit from disabling outbound mail and redirect it to a maildev container. This is achieved by installing `msmtp` on the `fpm` container and configuring it appropriately and deleting the `civicrm-buildkit/app/civicrm.settings.d/100-mail.php` configuration file.
+
 # Next steps
 
+* install `msmtp` on `cli` to catch mail sent from that machine.
 * Remove need to set up aliases, etc. on the host. Might require a rethink / new method for creating sites with buildkit
 * Configure maildev for better mail testing.
 * Decide on whether we should use nginx or apache (giving the option of either seems a bit wrong if we are trying to standardise on a stack)
+* Work out if we need any more of the php extensions that are required for in the build process in day to day use of CiviCRM (before the bug reports come in complaining that they are missing)
