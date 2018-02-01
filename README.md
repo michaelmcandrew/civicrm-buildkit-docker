@@ -1,6 +1,6 @@
 # CiviCRM buildkit on Docker
 
-A buildkit oriented docker set up for CiviCRM. This repository creates a CiviCRM development environment based on buildkit.
+A buildkit oriented docker set up for CiviCRM 4.7. This repository creates a CiviCRM development environment based on buildkit.
 
 It tries to follow the Docker principles of isolating services in containers (rather than munging the whole set up into a single container) in order to make it easier to experiment with different versions and flavours of the various services.
 
