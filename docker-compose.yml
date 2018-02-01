@@ -30,7 +30,7 @@ services:
       - "amp:/home/buildkit/.amp"
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    build: phpmyadmin
     ports:
       - "8081:80"
     links:
