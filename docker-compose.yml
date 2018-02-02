@@ -8,6 +8,7 @@ services:
       - "8080:8080"
     volumes:
       - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "./manage:/manage"
       - "amp:/home/buildkit/.amp"
     links:
       - fpm
@@ -15,6 +16,7 @@ services:
     build: fpm
     volumes:
       - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "./manage:/manage"
     links:
       - mysql
 

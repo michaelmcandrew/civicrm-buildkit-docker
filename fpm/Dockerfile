@@ -25,4 +25,5 @@ RUN docker-php-ext-install pdo_mysql \
   && docker-php-ext-install zip
 
 COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
+
 COPY msmtprc /etc/msmtprc
