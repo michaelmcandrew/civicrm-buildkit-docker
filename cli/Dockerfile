@@ -29,6 +29,7 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   libmcrypt-dev \
   libpng-dev \
   libxml2-dev \
+  msmtp-mta \
   mysql-client \
   nodejs \
   sudo \
@@ -52,6 +53,10 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install soap \
   && docker-php-ext-install zip
+
+COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
+
+COPY msmtprc /etc/msmtprc
 
 # Create buildkit user
 RUN useradd --create-home buildkit
@@ -79,7 +84,7 @@ RUN civibuild cache-warmup
 RUN git clone https://github.com/amp-cli/amp \
   && composer install -d amp
 
-# Configure amp non-interactivley
+# Configure amp non-interactively
 COPY --chown=buildkit:buildkit amp.services.yml /home/buildkit/.amp/services.yml
 
 COPY --chown=buildkit:buildkit civibuild.conf /home/buildkit/civicrm-buildkit/app/civibuild.conf
