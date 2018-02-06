@@ -1,5 +1,4 @@
-# TODO Change to php:7.0 (no need for fpm)
-FROM php:7.0-fpm-jessie
+FROM php:7.0-cli
 
 # Install apt packages
 #
@@ -74,7 +73,3 @@ USER buildkit
 WORKDIR /home/buildkit
 
 ENV PATH="/buildkit/bin:${PATH}"
-
-# Workaround, until this version of amp is packaged with buildkit
-RUN git clone https://github.com/amp-cli/amp\
-  && composer install -d amp
