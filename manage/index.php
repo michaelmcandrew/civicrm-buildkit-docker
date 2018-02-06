@@ -17,7 +17,7 @@
     <p><a href="localhost:8081">phpMyAdmin</a></p>
     <p><a href="localhost:8082">maildev</a></p>
     <?php
-    $sites = explode("\n", `grep -h ^CMS_URL /home/buildkit/civicrm-buildkit/build/*.sh`);
+    $sites = explode("\n", `grep -h ^CMS_URL /buildkit/build/*.sh`);
     if(count($sites)){
       echo "<h2>Sites</h2>";
 
