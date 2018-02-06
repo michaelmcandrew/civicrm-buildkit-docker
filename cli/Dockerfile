@@ -1,3 +1,4 @@
+# TODO Change to php:7.0 (no need for fpm)
 FROM php:7.0-fpm-jessie
 
 # Install apt packages
@@ -64,33 +65,16 @@ RUN useradd --create-home buildkit
 # Give buildkit passwordless sudo
 COPY sudo /etc/sudoers.d/buildkit
 
-# The rest of this Dockerfile should be run as the buildkit user
+RUN mkdir /buildkit
+
+RUN chown buildkit:buildkit /buildkit
+
 USER buildkit
 
-# Set the working directory to the buildkit user's home
 WORKDIR /home/buildkit
 
-RUN git clone https://github.com/civicrm/civicrm-buildkit.git
+ENV PATH="/buildkit/bin:${PATH}"
 
-ENV PATH="/home/buildkit/civicrm-buildkit/bin:${PATH}"
-
-RUN civi-download-tools
-
-RUN civibuild cache-warmup
-
-# Install a version of amp that supports custom nginx vhost templates
-# (can stop doing this once  buildkit updates to a version of amp that supports
-# custom templates)
-RUN git clone https://github.com/amp-cli/amp \
+# Workaround, until this version of amp is packaged with buildkit
+RUN git clone https://github.com/amp-cli/amp\
   && composer install -d amp
-
-# Configure amp non-interactively
-COPY --chown=buildkit:buildkit amp.services.yml /home/buildkit/.amp/services.yml
-
-COPY --chown=buildkit:buildkit civibuild.conf /home/buildkit/civicrm-buildkit/app/civibuild.conf
-
-# Custom nginx vhost that passes php to fpm container
-COPY --chown=buildkit:buildkit nginx-vhost.php /home/buildkit/civicrm-buildkit/.amp/nginx-vhost.php
-
-# We catch mail with maildev, so no need to disable outbound email
-RUN rm /home/buildkit/civicrm-buildkit/app/civicrm.settings.d/100-mail.php

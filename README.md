@@ -17,6 +17,7 @@ The `civicrm-buildkit/build` directory is bind mounted at `./build` for local de
 
 1. Install Docker and Docker compose
 2. Clone this repository
+3. Run the init script `./init.sh`
 3. Start the containers with `docker-compose up -d`
 4. Create a dmaster build with `docker-compose exec cli civibuild create dmaster`
 5. The build will be available at `./build/dmaster`

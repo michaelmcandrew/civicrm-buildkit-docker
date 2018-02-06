@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "./buildkit:/buildkit"
       - "./manage:/manage"
       - "amp:/home/buildkit/.amp"
     links:
@@ -15,7 +15,7 @@ services:
   fpm:
     build: fpm
     volumes:
-      - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "./buildkit:/buildkit"
       - "./manage:/manage"
     links:
       - mysql
@@ -24,11 +24,13 @@ services:
     build: mysql
     environment:
       MYSQL_ROOT_PASSWORD: buildkit
+    volumes:
+      - mysql:/var/lib/mysql
 
   cli:
     build: cli
     volumes:
-      - "./build:/home/buildkit/civicrm-buildkit/build"
+      - "./buildkit:/buildkit"
       - "amp:/home/buildkit/.amp"
 
   phpmyadmin:
@@ -47,3 +49,4 @@ services:
 
 volumes:
   amp:
+  mysql:
