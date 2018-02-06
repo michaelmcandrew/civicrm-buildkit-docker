@@ -13,24 +13,47 @@ It tries to follow the Docker principles of isolating services in containers (ra
 
 The `civicrm-buildkit/build` directory is bind mounted at `./build` for local development.
 
-## Getting started
+## Installation
 
 1. Install Docker and Docker compose
 2. Clone this repository
-3. Run the init script `./init.sh`
 3. Start the containers with `docker-compose up -d`
-4. Create a dmaster build with `docker-compose exec cli civibuild create dmaster`
-5. The build will be available at `./build/dmaster`
+3. Run the init script `./init.sh`
 
-## Tips
+Check the installation worked by browsing to `http://localhost:8080`.
 
-### Browsing sites
+## Create a site
 
-`civibuild` runs in a container and cannot update `/etc/hosts` on the hosts machine - you need to manually configure a `/etc/hosts` entry. `civibuild` is configured with the following URL_TEMPLATE: `http://%SITE_NAME%.buildkit:8080`. port 8080 on nginx is forwards to 8080 on the host. To access a site from the local machine add an entry to `/etc/hosts` along the lines of `127.0.0.1 %SITE_NAME%.buildkit`.
+1. `docker-compose exec cli civibuild create dmaster`
+2. `docker-compose restart nginx` (amp can't restart nginx from inside the cli container)
+3. Add `dmaster.buildkit 127.0.0.1` to `/etc/hosts`
+
+You site should be listed at `http://localhost:8080`. Visit it at http://dmaster.buildkit:8080.
+
+## Create aliases
+
+If you would rather not type `docker-compose...` all the time, consider creating aliases along the lines of the following:
+
+Assuming you have downloaded this repo to `$HOME/civicrm-buildkit-docker`:
+
+`alias db='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml'`
+`alias dbc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec cli'`
+`alias dbu='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d'`
+`alias dbr='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml restart nginx'`
+`alias dbd='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml down'`
+
+You can then:
+
+* bring up the containers with `dbu`
+* run cli commands with `dbc`, for example `dbc civibuild create dmaster` and `dbc civibuild reinstall wpmaster`.
+* restart nginx with `dbr`
+* stop the containers with dbd
 
 ### Viewing sent email
 
-By default, buildkit disables outbound mail. We stop buildkit from disabling outbound mail and redirect it to a maildev container. This is achieved by installing `msmtp` on the `fpm` container and configuring it appropriately and deleting the `civicrm-buildkit/app/civicrm.settings.d/100-mail.php` configuration file.
+Navigate to http://localhost:8082.
+
+Background: by default, buildkit disables outbound mail. We delete `civicrm-buildkit/app/civicrm.settings.d/100-mail.php` which re-enables outbound mail. We install `msmtp` on the `fpm` and `cli` containers and configuring it to deliver all mail to `maildev` on the `mail` container.
 
 # Roadmap
 
