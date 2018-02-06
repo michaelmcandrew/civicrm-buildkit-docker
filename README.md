@@ -36,11 +36,11 @@ If you would rather not type `docker-compose...` all the time, consider creating
 
 Assuming you have downloaded this repo to `$HOME/civicrm-buildkit-docker`:
 
-`alias db='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml'`
-`alias dbc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec cli'`
-`alias dbu='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d'`
-`alias dbr='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml restart nginx'`
-`alias dbd='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml down'`
+* `alias db='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml'`
+* `alias dbc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec cli'`
+* `alias dbu='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d'`
+* `alias dbr='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml restart nginx'`
+* `alias dbd='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml down'`
 
 You can then:
 
