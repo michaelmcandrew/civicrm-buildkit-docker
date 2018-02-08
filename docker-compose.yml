@@ -11,7 +11,7 @@ services:
       - "./manage:/manage"
       - "amp:/home/buildkit/.amp"
     links:
-      - fpm
+      - civicrm
 
   mysql:
     build: mysql
@@ -45,3 +45,4 @@ services:
 volumes:
   amp:
   mysql:
+  buildkit:
