@@ -25,7 +25,7 @@ Check the installation worked by browsing to `http://localhost:8080`.
 
 ## Create a site
 
-1. `docker-compose exec cli civibuild create dmaster` To get more information and option on the command civibuild read the documentation at https://docs.civicrm.org/dev/en/latest/tools/civibuild/
+1. `docker-compose exec cli civibuild create dmaster` You will find more information about civibuild and how to use it on  https://docs.civicrm.org/dev/en/latest/tools/civibuild/
 2. `docker-compose restart nginx` (amp can't restart nginx from inside the cli container)
 3. Add `dmaster.buildkit 127.0.0.1` to `/etc/hosts`
 
