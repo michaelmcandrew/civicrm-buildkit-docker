@@ -18,13 +18,14 @@ The `civicrm-buildkit/build` directory is bind mounted at `./build` for local de
 1. Install Docker and Docker compose
 2. Clone this repository
 3. Start the containers with `docker-compose up -d`
-3. Run the init script `./init.sh`
+4. Change the ownership of the `buildkit` directory `sudo chown your-username.your-group buildkit`
+5. Run the init script `./init.sh`
 
 Check the installation worked by browsing to `http://localhost:8080`.
 
 ## Create a site
 
-1. `docker-compose exec cli civibuild create dmaster`
+1. `docker-compose run cli civibuild create dmaster` You will find more information about civibuild and how to use it on  https://docs.civicrm.org/dev/en/latest/tools/civibuild/
 2. `docker-compose restart nginx` (amp can't restart nginx from inside the cli container)
 3. Add `dmaster.buildkit 127.0.0.1` to `/etc/hosts`
 
