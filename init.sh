@@ -14,5 +14,5 @@ rm $DIR/buildkit/app/civicrm.settings.d/100-mail.php
 # Workaround, until a version of amp that allows nginx template overrides is
 # packaged with buildkit
 git clone https://github.com/amp-cli/amp $DIR/buildkit/amp
-docker-compose --project-directory $DIR run composer install -d /buildkit/amp
+docker-compose --project-directory $DIR run cli composer install -d /buildkit/amp
 ln -sf $DIR/buildkit/amp/bin/amp $DIR/buildkit/bin/amp
