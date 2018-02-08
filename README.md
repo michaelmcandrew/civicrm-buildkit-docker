@@ -18,7 +18,7 @@ The `civicrm-buildkit/build` directory is bind mounted at `./build` for local de
 1. Install Docker and Docker compose
 2. Clone this repository
 3. Start the containers with `docker-compose up -d`
-4. Change the ownership of the _buildkit_ directory `sudo chown user.users buildkit`
+4. Change the ownership of the _buildkit_ directory `sudo chown your-username.your-group buildkit`
 5. Run the init script `./init.sh`
 
 Check the installation worked by browsing to `http://localhost:8080`.
