@@ -1,4 +1,4 @@
-FROM php:7.0-cli
+FROM php:7.0-fpm
 
 # Install apt packages
 #
@@ -52,7 +52,9 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install mysqli \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install soap \
+  && pecl install xdebug \
   && docker-php-ext-install zip
+
 
 COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
 
@@ -73,3 +75,15 @@ USER buildkit
 WORKDIR /home/buildkit
 
 ENV PATH="/buildkit/bin:${PATH}"
+
+RUN git clone https://github.com/civicrm/civicrm-buildkit.git $DIR/buildkit
+
+RUN civi-download-tools
+
+COPY amp.services.yml /buildkit/.amp/services.yml
+
+COPY civibuild.conf /buildkit/app/civibuild.conf
+
+COPY nginx-vhost.php /buildkit/.amp/nginx-vhost.php
+
+RUN rm /buildkit/app/civicrm.settings.d/100-mail.php

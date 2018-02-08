@@ -7,18 +7,11 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./buildkit:/buildkit"
+      - "buildkit:/buildkit"
       - "./manage:/manage"
       - "amp:/home/buildkit/.amp"
     links:
       - fpm
-  fpm:
-    build: fpm
-    volumes:
-      - "./buildkit:/buildkit"
-      - "./manage:/manage"
-    links:
-      - mysql
 
   mysql:
     build: mysql
@@ -27,18 +20,20 @@ services:
     volumes:
       - mysql:/var/lib/mysql
 
-  cli:
-    build: cli
+  civicrm:
+    build: civicrm
     volumes:
-      - "./buildkit:/buildkit"
+      - "buildkit:/buildkit"
       - "amp:/home/buildkit/.amp"
+    links:
+      - mysql
 
   phpmyadmin:
     build: phpmyadmin
     ports:
       - "8081:80"
     links:
-      - mysql:mysql
+      - mysql:mysql # simplify to just mysql?
     environment:
       PMA_HOST: mysql
 
