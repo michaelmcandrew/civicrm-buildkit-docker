@@ -29,13 +29,15 @@ services:
       - mysql
 
   phpmyadmin:
-    build: phpmyadmin
+    image: phpmyadmin/phpmyadmin
     ports:
       - "8081:80"
     links:
       - mysql:mysql # simplify to just mysql?
     environment:
       PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: buildkit
 
   mail:
     image: djfarrelly/maildev
