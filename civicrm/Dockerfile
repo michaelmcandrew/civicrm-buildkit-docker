@@ -78,7 +78,7 @@ RUN git clone https://github.com/civicrm/civicrm-buildkit.git /buildkit
 
 RUN civi-download-tools
 
-RUN civibuild download dmaster
+RUN civibuild cache-warmup
 
 COPY --chown=buildkit:buildkit amp.services.yml /home/buildkit/.amp/services.yml
 
