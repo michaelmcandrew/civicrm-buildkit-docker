@@ -2,16 +2,12 @@ version: '3.4'
 
 services:
 
-  nginx:
-    build: nginx
-    ports:
-      - "8080:8080"
+  civicrm:
+    build: civicrm
     volumes:
       - "buildkit:/buildkit"
-      - "./manage:/manage"
-      - "amp:/home/buildkit/.amp"
     links:
-      - civicrm
+      - mysql
 
   mysql:
     image: mysql:5.7
@@ -19,14 +15,6 @@ services:
       MYSQL_ROOT_PASSWORD: buildkit
     volumes:
       - mysql:/var/lib/mysql
-
-  civicrm:
-    build: civicrm
-    volumes:
-      - "buildkit:/buildkit"
-      - "amp:/home/buildkit/.amp"
-    links:
-      - mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -45,6 +33,5 @@ services:
       - "8082:80"
 
 volumes:
-  amp:
   mysql:
   buildkit:
