@@ -4,13 +4,15 @@ services:
 
   civicrm:
     build: civicrm
-    volumes:
-      - "buildkit:/buildkit"
     links:
       - mysql
+    ports:
+      - "8080:8080"
+    volumes:
+      - build:/buildkit/build
 
   mysql:
-    image: mysql:5.7
+    image: mysql:5.5
     environment:
       MYSQL_ROOT_PASSWORD: buildkit
     volumes:
@@ -34,4 +36,4 @@ services:
 
 volumes:
   mysql:
-  buildkit:
+  build:

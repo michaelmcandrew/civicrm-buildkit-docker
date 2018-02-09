@@ -5,7 +5,7 @@ parameters:
     perm_type: linuxAcl
     perm_user: www-data
     hosts_type: file
-    httpd_type: nginx
+    httpd_type: apache24
     httpd_visibility: all
-    httpd_restart_command: false
+    httpd_restart_command: 'sudo /usr/sbin/apachectl graceful'
 services: {  }

@@ -1,6 +1,46 @@
 # CiviCRM buildkit on Docker
 
-A buildkit oriented docker set up for CiviCRM 4.7. This repository creates a CiviCRM development environment based on buildkit.
+A CiviCRM docker set up, built for development. May also be useful for hosting. Contributions welcome.
+
+The CiviCRM Dockerfile ([`civicrm/Dockerfile`]('civicrm/Dockerfile')) in this repo is published on Docker hub at https://hub.docker.com/r/michaelmcandrew/civicrm/
+
+It is designed to work with a MySQL compatible container. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
+
+The docker-compose.yml file in this repository is a good starting point for Docker development.
+
+## Get started
+
+1. Install Docker and Docker compose
+2. Clone this repository
+3. From the repsitory root, run `docker-compose up -d`
+4. Install dmaster with `docker-compose exec -u buildkit civicrm civibuild install dmaster --url http://localhost:8080`
+5. Navigate to your new CiviCRM development site at http://localhost:8080
+
+## Developing with buildkit on Docker
+
+Buildkit cli commands can be run from the host with:
+
+`docker-compose exec -u buildkit civicrm <COMMAND>`
+
+Alternatively, you can login to the container and run commands from
+there with:
+
+`docker-compose exec -u buildkit civicrm bash`
+
+### Mounting the build directory
+
+1. Clone the civicrm-core repo to your host machine
+2. Mount it
+
+The development workflows below all revolve around **bind mounting** directories *from* the host machine *to* the civicrm container.
+
+Typically, you will do a git checkout of the repository you want to work on
+
+Bind mounting is
+
+
+
+
 
 It tries to follow the Docker principles of isolating services in containers (rather than munging the whole set up into a single container) in order to make it easier to experiment with different versions and flavours of the various services.
 
@@ -15,10 +55,6 @@ The `civicrm-buildkit/build` directory is bind mounted at `./build` for local de
 
 ## Installation
 
-1. Install Docker and Docker compose
-2. Clone this repository
-3. Start the containers with `docker-compose up -d`
-3. Run the init script `./init.sh`
 
 Check the installation worked by browsing to `http://localhost:8080`.
 

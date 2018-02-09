@@ -34,7 +34,6 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   nodejs \
   sudo \
   unzip \
-  vim \
   zip \
   zlib1g-dev \
   && rm -r /var/lib/apt/lists/*
@@ -55,15 +54,14 @@ RUN docker-php-ext-install bcmath \
   && pecl install xdebug \
   && docker-php-ext-install zip
 
+RUN a2enmod rewrite
 
 COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
 
 COPY msmtprc /etc/msmtprc
 
-# Create buildkit user
 RUN useradd --create-home buildkit
 
-# Give buildkit passwordless sudo
 COPY sudo /etc/sudoers.d/buildkit
 
 RUN mkdir /buildkit
@@ -76,14 +74,23 @@ WORKDIR /home/buildkit
 
 ENV PATH="/buildkit/bin:${PATH}"
 
-RUN git clone https://github.com/civicrm/civicrm-buildkit.git $DIR/buildkit
+RUN git clone https://github.com/civicrm/civicrm-buildkit.git /buildkit
 
 RUN civi-download-tools
 
-COPY amp.services.yml /buildkit/.amp/services.yml
+RUN civibuild download dmaster
+
+COPY --chown=buildkit:buildkit amp.services.yml /home/buildkit/.amp/services.yml
+
+# Need to create this before we configure apache, otherwise it will complain
+RUN mkdir .amp/apache.d
+
+COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
+
+# TODO: Allow SMTP params to be configured with an environment variable
+RUN rm /buildkit/app/civicrm.settings.d/100-mail.php
 
 COPY civibuild.conf /buildkit/app/civibuild.conf
 
-COPY nginx-vhost.php /buildkit/.amp/nginx-vhost.php
 
-RUN rm /buildkit/app/civicrm.settings.d/100-mail.php
+USER root
