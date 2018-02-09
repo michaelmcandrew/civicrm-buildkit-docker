@@ -1,1 +1,2 @@
-buildkit
+build/*
+!build/.gitkeep

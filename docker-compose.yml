@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - build:/buildkit/build
+      - ./build:/buildkit/build
 
   mysql:
     image: mysql:5.5

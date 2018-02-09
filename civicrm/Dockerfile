@@ -92,5 +92,6 @@ RUN rm /buildkit/app/civicrm.settings.d/100-mail.php
 
 COPY civibuild.conf /buildkit/app/civibuild.conf
 
+WORKDIR /buildkit/build
 
 USER root
