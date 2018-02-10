@@ -15,7 +15,7 @@ The docker-compose.yml file in this repository is a good starting point for Dock
 1. Install Docker and Docker compose
 2. Clone this repository
 3. From the repsitory root, run `docker-compose up -d`
-4. Create dmaster with `docker-compose exec -u buildkit civicrm civibuild install dmaster --url http://localhost:8080`
+4. Create dmaster with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
 5. Navigate to your new CiviCRM development site at <http://localhost:8080>
 
 ## CLI commands
