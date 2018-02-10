@@ -4,12 +4,19 @@ services:
 
   civicrm:
     build: civicrm
+    # image: michaelmcandrew/civicrm
     links:
       - mysql
     ports:
       - "8080:8080"
     volumes:
       - ./build:/buildkit/build
+      - amp:/home/buildkit/.amp
+      - git-cache:/buildkit/app/tmp/git-cache
+      - composer-cache:/home/buildkit/.composer
+      - drush-cache:/home/buildkit/.drush
+      - npm-cache:/home/buildkit/.npm
+      - bower-cache:/home/buildkit/.cache/bower
 
   mysql:
     image: mysql:5.5
@@ -29,11 +36,16 @@ services:
       PMA_USER: root
       PMA_PASSWORD: buildkit
 
-  mail:
+  maildev:
     image: djfarrelly/maildev
     ports:
       - "8082:80"
 
 volumes:
+  amp:
+  bower-cache:
+  composer-cache:
+  drush-cache:
+  git-cache:
+  npm-cache:
   mysql:
-  build:
