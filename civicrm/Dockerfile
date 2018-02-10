@@ -89,8 +89,6 @@ RUN mkdir -p /home/buildkit/.composer
 
 RUN mkdir -p /home/buildkit/.drush
 
-RUN mkdir -p /home/buildkit/.npm
-
 RUN mkdir -p /home/buildkit/.cache/bower
 
 COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
