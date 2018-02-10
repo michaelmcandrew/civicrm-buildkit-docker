@@ -85,6 +85,14 @@ COPY --chown=buildkit:buildkit amp.services.yml /home/buildkit/.amp/services.yml
 # Need to create this before we configure apache, otherwise it will complain
 RUN mkdir .amp/apache.d
 
+RUN mkdir -p /home/buildkit/.composer
+
+RUN mkdir -p /home/buildkit/.drush
+
+RUN mkdir -p /home/buildkit/.npm
+
+RUN mkdir -p /home/buildkit/.cache/bower
+
 COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
 
 # TODO: Allow SMTP params to be configured with an environment variable
