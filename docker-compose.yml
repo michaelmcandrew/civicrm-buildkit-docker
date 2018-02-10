@@ -3,8 +3,8 @@ version: '3.4'
 services:
 
   civicrm:
-    build: civicrm
-    # image: michaelmcandrew/civicrm
+    #build: civicrm
+    image: michaelmcandrew/civicrm
     links:
       - mysql
     ports:
