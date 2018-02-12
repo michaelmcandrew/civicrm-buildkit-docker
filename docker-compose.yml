@@ -11,12 +11,13 @@ services:
       - "8080:8080"
     volumes:
       - ./build:/buildkit/build
+      - buildkit:/buildkit # should this be a volume?
       - amp:/home/buildkit/.amp
-      - git-cache:/buildkit/app/tmp/git-cache
+      - bower-cache:/home/buildkit/.cache/bower
       - composer-cache:/home/buildkit/.composer
       - drush-cache:/home/buildkit/.drush
       - npm-cache:/home/buildkit/.npm
-      - bower-cache:/home/buildkit/.cache/bower
+      - git-cache:/buildkit/app/tmp/git-cache
 
   mysql:
     image: mysql:5.5
@@ -43,6 +44,7 @@ services:
 
 volumes:
   amp:
+  buildkit:
   bower-cache:
   composer-cache:
   drush-cache:
