@@ -40,7 +40,7 @@ By default, new builds created with this Docker image are available at `http://[
 
 The simplest way to do this is to create entries in the hosts `etc/hosts` file on behalf of civibuild as needed. Alternatively, you could set up a wildcard DNS for `*.buildkit` pointing to `127.0.0.1`.
 
-## Archiecture
+## Architecture
 
 We stick with the defaults and follow best pratice whenever possible. Sometimes CiviCM best practice and Docker best practice are at odds. In these situations we are often forced to do things the CiviCRM way. When this happens, we make a note in the 'cloud native' project of the steps we could take to make CiviCRM more Docker friendly (e.g. environment variables to configure SMTP).
 
