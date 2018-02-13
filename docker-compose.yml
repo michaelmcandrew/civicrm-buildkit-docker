@@ -3,16 +3,15 @@ version: '3.4'
 services:
 
   civicrm:
-    #build: civicrm
     image: michaelmcandrew/civicrm
     links:
       - mysql
     ports:
       - "8080:8080"
     volumes:
-      - buildkit:/buildkit # should this be a volume?
+      - buildkit:/buildkit
       - ./build:/buildkit/build
-      - ./extra:/extra # stuff on the host we want to see in the container
+      - ./extra:/extra
       - amp:/home/buildkit/.amp
       - bower-cache:/home/buildkit/.cache/bower
       - composer-cache:/home/buildkit/.composer
@@ -32,7 +31,7 @@ services:
     ports:
       - "8081:80"
     links:
-      - mysql:mysql # simplify to just mysql?
+      - mysql
     environment:
       PMA_HOST: mysql
       PMA_USER: root
