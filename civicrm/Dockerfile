@@ -60,36 +60,38 @@ COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
 
 COPY msmtprc /etc/msmtprc
 
-RUN useradd --create-home buildkit
+RUN useradd --home-dir /buildkit --create-home buildkit
 
 COPY sudo /etc/sudoers.d/buildkit
 
-RUN mkdir /buildkit
-
-RUN chown buildkit:buildkit /buildkit
-
 USER buildkit
 
-WORKDIR /home/buildkit
+WORKDIR /buildkit
 
 ENV PATH="/buildkit/bin:${PATH}"
 
-RUN git clone https://github.com/civicrm/civicrm-buildkit.git /buildkit
+RUN git clone https://github.com/civicrm/civicrm-buildkit.git buildkit-tmp
+
+RUN mv buildkit-tmp/* buildkit-tmp/.git* .
+
+RUN rmdir buildkit-tmp
+
+# Need to create this before we configure apache, otherwise it will complain
+RUN mkdir -p .amp/apache.d
+
+RUN mkdir -p .cache/bower
+
+RUN mkdir .composer
+
+RUN mkdir .drush
+
+RUN mkdir .npm
 
 RUN civi-download-tools
 
 RUN civibuild cache-warmup
 
-COPY --chown=buildkit:buildkit amp.services.yml /home/buildkit/.amp/services.yml
-
-# Need to create this before we configure apache, otherwise it will complain
-RUN mkdir .amp/apache.d
-
-RUN mkdir -p /home/buildkit/.composer
-
-RUN mkdir -p /home/buildkit/.drush
-
-RUN mkdir -p /home/buildkit/.cache/bower
+COPY --chown=buildkit:buildkit amp.services.yml /buildkit/.amp/services.yml
 
 COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
 
@@ -97,7 +99,5 @@ COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
 RUN rm /buildkit/app/civicrm.settings.d/100-mail.php
 
 COPY civibuild.conf /buildkit/app/civibuild.conf
-
-WORKDIR /buildkit/build
 
 USER root
