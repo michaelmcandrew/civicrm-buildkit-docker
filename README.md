@@ -55,8 +55,9 @@ The `docker-compose.yml` defines the following containers:
 
 docker-compose commands get quite verbose. You may want to create aliases as follows (assuming you have downloaded this repo to `$HOME/civicrm-buildkit-docker`):
 
-- `alias dbc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec cli'`
-- `alias dbu='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d'`
+- `alias bk='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm`
+- `alias bkc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm`
+- `alias bku='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d`
 
 You can then:
 
