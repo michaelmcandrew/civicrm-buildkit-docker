@@ -10,9 +10,9 @@ services:
     ports:
       - "8080:8080"
     volumes:
+      - buildkit:/buildkit # should this be a volume?
       - ./build:/buildkit/build
       - ./extra:/extra # stuff on the host we want to see in the container
-      - buildkit:/buildkit # should this be a volume?
       - amp:/home/buildkit/.amp
       - bower-cache:/home/buildkit/.cache/bower
       - composer-cache:/home/buildkit/.composer
