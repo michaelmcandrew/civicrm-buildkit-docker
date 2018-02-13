@@ -21,7 +21,7 @@ services:
       - git-cache:/buildkit/app/tmp/git-cache
 
   mysql:
-    image: mysql:5.5
+    image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: buildkit
     volumes:
