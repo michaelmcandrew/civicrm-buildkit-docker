@@ -4,6 +4,9 @@ services:
 
   civicrm:
     image: michaelmcandrew/civicrm
+    hostname: civicrm
+    environment:
+      TERM: xterm-color
     links:
       - mysql
     ports:
@@ -12,11 +15,11 @@ services:
       - buildkit:/buildkit
       - ./build:/buildkit/build
       - ./extra:/extra
-      - amp:/home/buildkit/.amp
-      - bower-cache:/home/buildkit/.cache/bower
-      - composer-cache:/home/buildkit/.composer
-      - drush-cache:/home/buildkit/.drush
-      - npm-cache:/home/buildkit/.npm
+      - amp:/buildkit/.amp
+      - bower-cache:/buildkit/.cache/bower
+      - composer-cache:/buildkit/.composer
+      - drush-cache:/buildkit/.drush
+      - npm-cache:/buildkit/.npm
       - git-cache:/buildkit/app/tmp/git-cache
 
   mysql:

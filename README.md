@@ -61,7 +61,6 @@ Background: by default, buildkit disables outbound mail. We delete `civicrm-buil
 docker-compose commands get quite verbose. You may want to create aliases as follows (assuming you have downloaded this repo to `$HOME/civicrm-buildkit-docker`):
 
 - `alias bk='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm`
-- `alias bkb='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit -e TERM=xterm-color civicrm bash'` # note the colour terminal
 - `alias bkc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm`
 - `alias bku='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d`
 
