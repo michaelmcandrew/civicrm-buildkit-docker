@@ -56,10 +56,6 @@ RUN docker-php-ext-install bcmath \
 
 RUN a2enmod rewrite
 
-COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
-
-COPY msmtprc /etc/msmtprc
-
 RUN useradd --home-dir /buildkit --create-home buildkit
 
 COPY sudo /etc/sudoers.d/buildkit
@@ -93,9 +89,12 @@ RUN civibuild cache-warmup
 
 COPY --chown=buildkit:buildkit amp.services.yml /buildkit/.amp/services.yml
 
+COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
+
+COPY msmtprc /etc/msmtprc
+
 COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
 
-# TODO: Allow SMTP params to be configured with an environment variable
 RUN rm /buildkit/app/civicrm.settings.d/100-mail.php
 
 COPY civibuild.conf /buildkit/app/civibuild.conf
