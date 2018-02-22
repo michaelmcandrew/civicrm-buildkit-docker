@@ -2,13 +2,9 @@
 
 CiviCRM buildkit on Docker is primarily built for development. It may also be useful for hosting. Contributions welcome.
 
-Please file specific issues on the [github issue queue](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues). More general discussion about CiviCRM and Docker should happen in CivCRM's ['cloud-native' project](https://lab.civicrm.org/dev/cloud-native).
+The **CiviCRM Dockerfile** ([`civicrm/Dockerfile`]('civicrm/Dockerfile')) in this repo is published on Docker hub at <https://hub.docker.com/r/michaelmcandrew/civicrm/>. It is designed to work with a MySQL compatible container. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
 
-The CiviCRM Dockerfile ([`civicrm/Dockerfile`]('civicrm/Dockerfile')) in this repo is published on Docker hub at <https://hub.docker.com/r/michaelmcandrew/civicrm/>
-
-It is designed to work with a MySQL compatible container. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
-
-The docker-compose.yml file in this repository is a good starting point for Docker development. Advanced users may wish to create their own `docker-compose.yml`.
+The **docker-compose.yml** file in this repository is a good starting point for Docker development. Advanced users may wish to create their own `docker-compose.yml`.
 
 ## Getting started
 
@@ -56,18 +52,45 @@ Navigate to <http://localhost:8082> to view all email sent from the civicrm cont
 
 Background: by default, buildkit disables outbound mail. We delete `civicrm-buildkit/app/civicrm.settings.d/100-mail.php` which re-enables outbound mail. We install `msmtp` on the `civicrm` container and configure it to deliver all mail to the `maildev` container.
 
-### Command line aliases
+### Aliases
 
-docker-compose commands get quite verbose. You may want to create aliases as follows (assuming you have downloaded this repo to `$HOME/civicrm-buildkit-docker`):
+docker-compose commands get quite verbose. You may want to create aliases as follows:
 
-- `alias bk='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm`
-- `alias bkc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm`
-- `alias bku='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d`
-
+```bash
+alias bku='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml up -d'
+alias bkc='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm'
+alias bkb='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml exec -u buildkit civicrm bash'
+alias bk='docker-compose --file $HOME/civicrm-buildkit-docker/docker-compose.yml'
+```
 You can then:
 
-- bring up the containers with `dbu`
-- run build and admin tools with `dbc`, for example `dbc civibuild create dmaster`.
+- bring up the containers with `bku`
+- run build and admin tools with `bkc`, for example `bkc civibuild create dmaster`.
+- start bash in the civicrm container with `bkb`.
+- run any other docker compose command with `bk`, e.g. `bk down`
+
+**Note**: the above aliases assume you have downloaded this repo to `$HOME/civicrm-buildkit-docker`. Please adjust as appropriate if you have downloaded it somewhere else.
+
+
+## Getting help
+
+Feel free to ask any questions you have on the [sysadmin](https://chat.civicrm.org/civicrm/channels/sysadmin) chatroom (mentioning @michaelmcandrew if you feel like it), or file an issue in the [github issue queue](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues).
+
+## Upgrading
+
+New docker images are periodically released on Docker Hub at <https://hub.docker.com/r/michaelmcandrew/civicrm/>. You can upgrade to the latest version as follows:
+
+1. Download the latest image with `docker pull michaelmcandrew/civicrm`.
+2. Run `docker-compose up -d` will rebuild your containers with the latest image.
+
+**Note**: we mount `/buildkit` as a volume so that any changes you make to the civicrm container (and your bash history, etc.) persist accross restarts. This volume is mounted over the `/buildkit` directory that comes with the container.  You will need to delete this volume (it gets recreated automatically based on the contents of the container) if you want to access the /buildkit directory that comes with the upgraded container. You can do that all follows:
+
+From the civicrm-buildkit-docker directory:
+
+1. Stop your containers `docker-compose down`.
+2. Identify the /buildkit volume with `docker volume ls`. It will have a 'volume name' along the lines of `civicrmbuildkitdocker_buildkit`.
+4. Remove the volume with `docker volume rm [VOLUME NAME]`.
+5. Restart the containers with `docker-compose up -d`.
 
 ## Architecture
 
@@ -79,3 +102,7 @@ The `docker-compose.yml` defines the following containers:
 * **mysql**
 * **phpmyadmin** for easier MySQL admin
 * **maildev** to catch outbound email
+
+It seems like might make sense to integrate this repository with [civicrm-buildkit](https://github.com/civicrm/civicrm-buildkit) at some point. I don't think that would be too hard to do.
+
+More general discussion about CiviCRM and Docker is welcome in CivCRM's ['cloud-native' project](https://lab.civicrm.org/dev/cloud-native).
