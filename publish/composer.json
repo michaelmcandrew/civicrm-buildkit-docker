@@ -1,0 +1,12 @@
+{
+    "name": "michael/publish",
+    "require": {
+        "twig/twig": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "Michael McAndrew",
+            "email": "michaelmcandrew@thirdsectordesign.org"
+        }
+    ]
+}
