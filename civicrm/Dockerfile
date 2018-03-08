@@ -43,7 +43,6 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
 RUN docker-php-ext-install bcmath \
   && docker-php-ext-install gd \
   && docker-php-ext-install gettext \
-  && pecl install imagick \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install imap \
   && docker-php-ext-install intl \
@@ -51,8 +50,10 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install mysqli \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install soap \
-  && pecl install xdebug \
   && docker-php-ext-install zip
+
+RUN pecl install imagick \
+  && pecl install xdebug-2.5.5
 
 RUN a2enmod rewrite
 
