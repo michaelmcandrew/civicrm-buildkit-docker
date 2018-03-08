@@ -4,7 +4,7 @@ $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates/civicrm');
 $twig = new Twig_Environment($loader, array(
 ));
 
-$phpVersions = ['5.6', '7.0'];
+$phpVersions = ['5.6', '7.0', '7.1', '7.2'];
 
 foreach($phpVersions as $phpVersion){
   $dir = __DIR__. "/civicrm/php{$phpVersion}";

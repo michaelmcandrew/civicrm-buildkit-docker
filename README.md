@@ -71,6 +71,9 @@ You can then:
 
 **Note**: the above aliases assume you have downloaded this repo to `$HOME/civicrm-buildkit-docker`. Please adjust as appropriate if you have downloaded it somewhere else.
 
+### Using different versions of PHP
+
+See [publish/README.md](publish/README.md) for instructions on how to build CiviCRM containers that use different versions of PHP.
 
 ## Getting help
 
