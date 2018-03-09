@@ -14,6 +14,8 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 4. Create dmaster with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
 5. Navigate to your new CiviCRM development site at <http://localhost:8080>
 
+Note: for less surprises, consider using the stable branch.
+
 ## Usage
 
 ### CLI commands
