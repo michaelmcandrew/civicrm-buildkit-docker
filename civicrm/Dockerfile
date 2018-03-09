@@ -53,7 +53,7 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install zip
 
 RUN pecl install imagick \
-  && pecl install xdebug-2.5.5
+  && pecl install xdebug
 
 RUN a2enmod rewrite
 
