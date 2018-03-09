@@ -6,13 +6,17 @@ The **CiviCRM Dockerfile** ([`civicrm/Dockerfile`]('civicrm/Dockerfile')) in thi
 
 The **docker-compose.yml** file in this repository is a good starting point for Docker development. Advanced users may wish to create their own `docker-compose.yml`.
 
+## Requirements
+
+* Docker
+* Docker compose
+
 ## Getting started
 
-1. Install Docker and Docker compose
-2. Clone this repository
-3. From the repsitory root, run `docker-compose up -d`
-4. Create dmaster with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
-5. Navigate to your new CiviCRM development site at <http://localhost:8080>
+1. Clone this repository
+2. From the repsitory root, run `docker-compose up -d`
+3. Create dmaster with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
+4. Navigate to your new CiviCRM development site at <http://localhost:8080>
 
 Note: for less surprises, consider using the stable branch.
 
@@ -111,3 +115,15 @@ The `docker-compose.yml` defines the following containers:
 It seems like might make sense to integrate this repository with [civicrm-buildkit](https://github.com/civicrm/civicrm-buildkit) at some point. I don't think that would be too hard to do.
 
 More general discussion about CiviCRM and Docker is welcome in CivCRM's ['cloud-native' project](https://lab.civicrm.org/dev/cloud-native).
+
+## Credits
+
+CiviCRM Buildkit Docker is written by [Michael McAndrew](https://twitter.com/michaelmcandrew) from [Third Sector Design](https://thirdsectordesign.org/) who you can [contact](https://thirdsectordesign.org/contact) for help, support and further development.
+
+## Contributing
+
+Contributions to this repository are very welcome. Feel free to submit a pull request for minor improvements. For larger changes, please create an issue first.
+
+## License
+
+This extension is licensed under [AGPL-3.0](LICENSE.txt).
