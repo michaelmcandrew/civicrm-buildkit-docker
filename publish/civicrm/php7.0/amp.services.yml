@@ -2,7 +2,7 @@ parameters:
     version: 2
     db_type: mysql_dsn
     mysql_dsn: 'mysql://root:buildkit@mysql:3306'
-    perm_type: linuxAcl
+    perm_type: none
     perm_user: www-data
     hosts_type: file
     httpd_type: apache24

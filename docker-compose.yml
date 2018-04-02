@@ -3,10 +3,11 @@ version: '3.4'
 services:
 
   civicrm:
-    image: michaelmcandrew/civicrm
+    build: civicrm
     hostname: civicrm
     environment:
       TERM: xterm-color
+      APACHE_RUN_USER: buildkit
     links:
       - mysql
     ports:
