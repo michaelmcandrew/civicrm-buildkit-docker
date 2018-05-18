@@ -1,0 +1,65 @@
+version: '3.4'
+
+services:
+
+  civicrm:
+    build:
+      context: civicrm
+      args:
+        BUILDKIT_UID: 1001
+        # BUILDKIT_GID: 1001 # By default, this will be the same as the UID
+    hostname: civicrm
+    environment:
+      TERM: xterm-color
+      APACHE_RUN_USER: buildkit
+    links:
+      - mysql
+    ports:
+      - "8080:8080"
+    volumes:
+      - buildkit:/buildkit
+      - ./build:/buildkit/build
+      - ./extra:/extra
+      - amp:/buildkit/.amp
+      - bower-cache:/buildkit/.cache/bower
+      - composer-cache:/buildkit/.composer
+      - drush-cache:/buildkit/.drush
+      - npm-cache:/buildkit/.npm
+      - git-cache:/buildkit/app/tmp/git-cache
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: buildkit
+    volumes:
+      - mysql:/var/lib/mysql
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: buildkit
+    restart: always
+
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - "8082:80"
+    restart: always
+
+volumes:
+  amp:
+  buildkit:
+  bower-cache:
+  composer-cache:
+  drush-cache:
+  git-cache:
+  npm-cache:
+  mysql:

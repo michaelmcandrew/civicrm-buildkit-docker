@@ -61,7 +61,13 @@ RUN pecl install imagick \
 
 RUN a2enmod rewrite
 
-RUN useradd --home-dir /buildkit --create-home buildkit
+ARG BUILDKIT_UID=1000
+
+ARG BUILDKIT_GID=$BUILDKIT_UID
+
+RUN addgroup --gid=$BUILDKIT_GID buildkit
+
+RUN useradd --home-dir /buildkit --create-home --uid $BUILDKIT_UID --gid $BUILDKIT_GID buildkit
 
 COPY sudo /etc/sudoers.d/buildkit
 

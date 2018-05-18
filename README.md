@@ -81,6 +81,20 @@ You can then:
 
 See [publish/README.md](publish/README.md) for instructions on how to build CiviCRM containers that use different versions of PHP.
 
+## Custom builds
+
+This repository comes with a `docker-compose-build.yml` that can be used for custom builds. One option is to rename it to `docker-compose.yml` and follow the commands above. Alternatively, you can references it in docker-compose commands with the --file argument, e.g.:
+
+```
+docker-compose --file /path/to/docker-compose-build.yml up -d
+```
+
+Custom builds are useful if you want to pass particular arguments to the build. For example, you can define the UID and GID of the buildkit user (see below).
+
+### UID and GID conflicts
+
+Bind mounts are fussy when it comes to user ids and group ids. If the user on your host machine has a different UID and GID to the buildkit user in the container (which is 1000 by default), you can create a custom build that passes BUILDKIT_UID and BUILDKIT_GID as arguments.
+
 ## Getting help
 
 Feel free to ask any questions you have on the [sysadmin](https://chat.civicrm.org/civicrm/channels/sysadmin) chatroom (mentioning @michaelmcandrew if you feel like it), or file an issue in the [github issue queue](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues).
