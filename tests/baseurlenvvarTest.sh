@@ -8,4 +8,4 @@ git checkout tiotsop
 docker-compose -p baseurlenvar down -v
 docker volume rm -f `docker volume ls  -q --f name=baseurlenvar*`
 docker-compose -p baseurlenvar up -d
-docker-compose -p baseurlenvar exec -u buildkit civicrm civibuild create dmaster --patch https://github.com/civicrm/civicrm-core/pull/12263
+docker-compose -p baseurlenvar exec -u buildkit civicrm civibuild create dmaster --patch https://github.com/civicrm/civicrm-core/pull/12307
