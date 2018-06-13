@@ -8,7 +8,7 @@ git checkout tiotsop
 docker-compose -p baseurlenvar up -d
 
 # Test
-docker-compose -p baseurlenvar exec -u buildkit civicrm civibuild create dmaster --patch https://github.com/civicrm/civicrm-core/pull/12263
+docker-compose -p baseurlenvar exec -u buildkit civicrm civibuild create dmaster --patch https://github.com/civicrm/civicrm-core/pull/12307
 
 # Tear down
 docker-compose -p baseurlenvar down -v
