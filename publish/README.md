@@ -21,10 +21,14 @@ civicrm:
 
 ## Updating Dockerfiles
 
-1. Make any necessary changes to the `templates` and `publish.php` script.
-2. From the `publish` directory, `composer install` (if you haven't already) and run `php publish.php`
-3. Check the generated directories in `publish/civicrm`
+1. From the `publish` directory, run `composer install`
+2. Make any necessary changes to the `templates` and `publish.php` script.
+3. Run `php publish.php`
+4. Check the generated directories in `publish/civicrm`
+5. Optionally, copy the contents of `publish/civicrm/php7.0` to `civicrm` with `cp -r publish/civicrm/php7.0/* civicrm`
 
-## Updating the `:latest` (default) Dockerfile
+## Publishing updates to https://hub.docker.com
 
-Copy the contents of `publish/civicrm/php7.0` to `civicrm` with `cp publish/civicrm/php7.0/* civicrm`.
+Lets say you wanted publish the image for the civicrm container you are currently using. `docker ps` will show the list of containers in use. `docker inspect --format='{{.Image}}' $CONTAINER_ID` will give you the appropriate the Image ID.
+
+You can then tag the image id with michaelmcandrew/civicrm like this `docker tag $IMAGE_ID michaelmcandrew/civicrm` and publish it with `docker push michaelmcandrew/civicrm`.

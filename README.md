@@ -138,6 +138,10 @@ CiviCRM Buildkit Docker is written by [Michael McAndrew](https://twitter.com/mic
 
 Contributions to this repository are very welcome. Feel free to submit a pull request for minor improvements. For larger changes, please create an issue first.
 
+## See also
+
+* [Publishing Dockerfiles](publish/README.md) for details on how to update the image published on https://hub.docker.com.
+
 ## License
 
 This extension is licensed under [AGPL-3.0](LICENSE.txt).
