@@ -57,6 +57,8 @@ RUN pecl install imagick \
 
 RUN a2enmod rewrite
 
+RUN a2enmod headers
+
 ARG BUILDKIT_UID=1000
 
 ARG BUILDKIT_GID=$BUILDKIT_UID
