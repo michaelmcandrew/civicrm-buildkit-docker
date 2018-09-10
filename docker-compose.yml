@@ -8,6 +8,7 @@ services:
     environment:
       TERM: xterm-color
       APACHE_RUN_USER: buildkit
+      XDEBUG_CONFIG: "default_enable=0 remote_enable=1 remote_handler=dbgp remote_port=9000 remote_autostart=0 remote_connect_back=0 idekey=PHPSTORM remote_host=host.docker.internal"
     links:
       - mysql
     ports:

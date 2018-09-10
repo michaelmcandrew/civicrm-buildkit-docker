@@ -1,4 +1,4 @@
-# CiviCRM buildkit on Docker
+  # CiviCRM buildkit on Docker
 
 CiviCRM buildkit on Docker is primarily built for development. It may also be useful for hosting. Contributions welcome.
 
@@ -41,6 +41,10 @@ The `build` directory of this repository is mounted into the civicrm container a
 ### The `/extra` mount
 
 We also mount an the `extra` directory of this repository at `/extra` for ad hoc use.
+
+### Xdebug
+
+Xdebug [might work](README-xdebug.md).
 
 ### Multiple builds and site URLs
 
