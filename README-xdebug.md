@@ -1,6 +1,6 @@
 # How to use Xdebug
 
-Xdebug works with Linux and PhpStorm.
+Xdebug works with Ubuntu and PhpStorm.
 Thank you [@MetalArend](https://github.com/MetalArend), for figuring this out.
 
 ## Preparing your containers
@@ -28,6 +28,17 @@ This creates an entry for host.docker.internal
 in your civicrm-container.
 
 **You need to issue the command above every time after starting your containers!**
+
+## Drill a hole in your firewall.
+
+If you use the uncomplicated firewall (enter `sudo ufw status` to check), you
+need to allow incoming traffic on port 9000 of your host machine:
+
+```
+sudo ufw allow 9000
+```
+
+(This is probably a bad thing.)
 
 ## Configuring PhpStorm
 
