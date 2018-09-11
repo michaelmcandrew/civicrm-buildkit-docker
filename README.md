@@ -1,4 +1,4 @@
-  # CiviCRM buildkit on Docker
+# CiviCRM buildkit on Docker
 
 CiviCRM buildkit on Docker is primarily built for development. It may also be useful for hosting. Contributions welcome.
 
