@@ -1,7 +1,7 @@
 # How to use Xdebug
 
 Xdebug works with Ubuntu and PhpStorm.
-Big thanks to MetalArend of [phpqa.io](https://phpqa.io/phpqa.io), because
+Big thanks to MetalArend of [phpqa.io](https://phpqa.io), because
 he did most of the work.
 
 ## Preparing your containers
