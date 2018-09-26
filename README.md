@@ -14,11 +14,11 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 ## Getting started
 
 1. Clone this repository
-2. From the repsitory root, run `docker-compose up -d`
-3. Create dmaster with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
+2. From the repsitory root, run `docker-compose up -d` to start the containers
+3. Create a dmaster demo site with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
 4. Navigate to your new CiviCRM development site at <http://localhost:8080>
 
-Note: for less surprises, consider using the stable branch.
+Note: for less surprises, consider using a [stable release](https://github.com/michaelmcandrew/civicrm-buildkit-docker/releases).
 
 ## Usage
 
