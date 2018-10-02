@@ -81,19 +81,19 @@ You can then:
 
 See [publish/README.md](publish/README.md) for instructions on how to build CiviCRM containers that use different versions of PHP.
 
-## Custom builds
-
-This repository comes with a `docker-compose-build.yml` that can be used for custom builds. One option is to rename it to `docker-compose.yml` and follow the commands above. Alternatively, you can references it in docker-compose commands with the --file argument, e.g.:
-
-```
-docker-compose --file /path/to/docker-compose-build.yml up -d
-```
-
-Custom builds are useful if you want to pass particular arguments to the build. For example, you can define the UID and GID of the buildkit user (see below).
-
 ### UID and GID conflicts
 
-Bind mounts are fussy when it comes to user ids and group ids. If the user on your host machine has a different UID and GID to the buildkit user in the container (which is 1000 by default), you can create a custom build that passes BUILDKIT_UID and BUILDKIT_GID as arguments.
+Bind mounts are fussy when it comes to user ids and group ids. If the user on your host machine has a different UID and GID to the buildkit user in the container (which is 1000 by default), you can create a custom build (see below) that passes BUILDKIT_UID and BUILDKIT_GID as arguments.
+
+## Custom builds
+
+This repository comes with a `docker-compose-build.yml` that can be used for custom builds. Custom builds are useful if you want to pass particular arguments to the build. For example, you can define the UID and GID of the buildkit user (see below).
+
+You can create a custom build with a custom UID for the buildkit user as follows:
+
+1. Overwrite `docker-compose.yml` with `docker-compose-build.yml`.
+2. Change the BUILDKIT_UID argument to match your user id if necessary (`echo $UID` should give you your user id).
+3. run `docker-compose up -d --build`.
 
 ## Getting help
 
@@ -117,7 +117,7 @@ From the civicrm-buildkit-docker directory:
 
 ## Architecture
 
-We stick with the defaults and follow best pratice whenever possible. Sometimes CiviCM best practice and Docker best practice are at odds. In these situations we are often forced to do things the CiviCRM way. When this happens, we make a note in the 'cloud native' project of the steps we could take to make CiviCRM more Docker friendly (e.g. environment variables to configure SMTP).
+We stick with the defaults and follow best practice whenever possible. Sometimes CiviCRM best practice and Docker best practice are at odds. In these situations we are often forced to do things the CiviCRM way. When this happens, we make a note in the 'cloud native' project of the steps we could take to make CiviCRM more Docker friendly (e.g. environment variables to configure SMTP).
 
 The `docker-compose.yml` defines the following containers:
 
