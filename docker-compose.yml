@@ -22,8 +22,6 @@ services:
       - drush-cache:/buildkit/.drush
       - npm-cache:/buildkit/.npm
       - git-cache:/buildkit/app/tmp/git-cache
-    networks:
-      - buildkit
     restart: always
 
   mysql:
@@ -32,8 +30,6 @@ services:
       MYSQL_ROOT_PASSWORD: buildkit
     volumes:
       - mysql:/var/lib/mysql
-    networks:
-      - buildkit
     restart: always
 
   phpmyadmin:
@@ -46,16 +42,12 @@ services:
       PMA_HOST: mysql
       PMA_USER: root
       PMA_PASSWORD: buildkit
-    networks:
-      - buildkit
     restart: always
 
   maildev:
     image: djfarrelly/maildev
     ports:
       - "8082:80"
-    networks:
-      - buildkit
     restart: always
 
 volumes:
@@ -67,9 +59,3 @@ volumes:
   git-cache:
   npm-cache:
   mysql:
-
-networks:
-  buildkit:
-    ipam:
-      config:
-      - subnet: 172.26.0.0/16
