@@ -111,3 +111,9 @@ COPY civibuild.conf /buildkit/app/civibuild.conf
 COPY apache24-vhost.php /buildkit/build/.amp/apache24-vhost.php
 
 USER root
+
+COPY ./docker-civicrm-entrypoint /usr/local/bin
+
+ENTRYPOINT [ "docker-civicrm-entrypoint" ]
+
+CMD ["apache2-foreground"]
