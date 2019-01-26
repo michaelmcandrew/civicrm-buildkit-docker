@@ -59,6 +59,8 @@ RUN docker-php-ext-install bcmath \
 RUN pecl install imagick \
   && pecl install xdebug
 
+RUN docker-php-ext-enable imagick
+
 RUN a2enmod rewrite
 
 RUN a2enmod headers
