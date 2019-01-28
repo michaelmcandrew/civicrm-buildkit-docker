@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
   civicrm:
-    image: michaelmcandrew/civicrm
+    image: michaelmcandrew/civicrm-buildkit
     hostname: civicrm
     environment:
       TERM: xterm-color
