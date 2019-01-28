@@ -52,11 +52,15 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install soap \
   && docker-php-ext-install zip
 
+# Install and enable imagick PECL extensions
 RUN pecl install imagick \
+  && docker-php-ext-enable imagick
+
+# Install xdebug PECL extension
 {% if php_version == 5.6 %}
-  && pecl install xdebug-2.5.5
+RUN pecl install xdebug-2.5.5
 {% else %}
-  && pecl install xdebug
+RUN pecl install xdebug
 {% endif %}
 
 RUN a2enmod rewrite
