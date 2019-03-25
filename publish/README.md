@@ -29,6 +29,9 @@ civicrm:
 
 ## Publishing updates to https://hub.docker.com
 
-Lets say you wanted publish the image for the civicrm container you are currently using. `docker ps` will show the list of containers in use. `docker inspect --format='{{.Image}}' $CONTAINER_ID` will give you the appropriate the Image ID.
+From the repo root directory:
 
-You can then tag the image id with michaelmcandrew/civicrm like this `docker tag $IMAGE_ID michaelmcandrew/civicrm` and publish it with `docker push michaelmcandrew/civicrm`.
+```
+docker build civicrm --no-cache -t michaelmcandrew/civicrm-buildkit-docker
+docker push michaelmcandrew/civicrm-buildkit-docker
+```
