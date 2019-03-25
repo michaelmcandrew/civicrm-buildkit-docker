@@ -18,10 +18,15 @@ FROM php:7.1-apache-jessie
 # * unzip
 # * zip
 # * node 9.x (from nodesource repository)
+#
+# iproute2 is required to get host ip from container
+
+
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
   git \
+  iproute2 \
   libc-client-dev \
   libicu-dev \
   libkrb5-dev \
@@ -48,6 +53,7 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install intl \
   && docker-php-ext-install mcrypt \
   && docker-php-ext-install mysqli \
+  && docker-php-ext-install opcache \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install soap \
   && docker-php-ext-install zip
