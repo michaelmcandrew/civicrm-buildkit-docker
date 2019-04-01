@@ -26,12 +26,13 @@ The **docker-compose.yml** file in this repository is a good starting point for 
         - CIVI_DB_DSN: mysql://dmasterciv_6o62j:zhp2ftwJuw5W4WpG@mysql:3306/dmasterciv_6o62j?new_link=true
         - TEST_DB_DSN: mysql://dmastertes_gdc1v:eGCi5IT2bIkKv4EZ@mysql:3306/dmastertes_gdc1v?new_link=true
         - ADMIN_USER: admin
-        - ADMIN_PASS: AN9u0WSGcIJI
+        - ADMIN_PASS: ##########
         - DEMO_USER: demo
         - DEMO_PASS: demo
         ```
 
-    * Make note of the admin and demo credentials for future use.
+    * Make note of the admin and demo credentials for future use. These credentials may also be found in the build directory, e.g. the credentials for `dmaster` are in `build/dmaster.sh`.
+    * For more help with civibuild's create command, see the [buildkit documentation](https://docs.civicrm.org/dev/en/latest/tools/civibuild/)
 
 4. Navigate to your new CiviCRM development site at <http://localhost:8080>
 
