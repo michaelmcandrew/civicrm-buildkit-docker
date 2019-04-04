@@ -2,7 +2,7 @@
 
 CiviCRM buildkit on Docker is primarily built for development. It may also be useful for hosting. Contributions welcome.
 
-The **CiviCRM Dockerfile** ([`civicrm/Dockerfile`]('civicrm/Dockerfile')) in this repo is published on Docker hub at <https://hub.docker.com/r/michaelmcandrew/civicrm/>. It is designed to work with a MySQL compatible container. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
+The **CiviCRM Dockerfile** ([`civicrm/Dockerfile`](civicrm/Dockerfile)) in this repo is published on Docker hub at <https://hub.docker.com/r/michaelmcandrew/civicrm/>. It is designed to work with a MySQL compatible container. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
 
 The **docker-compose.yml** file in this repository is a good starting point for Docker development. Advanced users may wish to create their own `docker-compose.yml`.
 
@@ -14,7 +14,7 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 ## Getting started
 
 1. Clone this repository
-2. From the repsitory root, run `docker-compose up -d` to start the containers
+2. From the repository root, run `docker-compose up -d` to start the containers
 3. Create a dmaster demo site with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
 
     * The build will run for some time (go get some coffee).  If successful, it will conclude with output similar to the following:
@@ -124,7 +124,7 @@ New docker images are periodically released on Docker Hub at <https://hub.docker
 1. Download the latest image with `docker pull michaelmcandrew/civicrm`.
 2. Run `docker-compose up -d` will rebuild your containers with the latest image.
 
-**Note**: we mount `/buildkit` as a volume so that any changes you make to the civicrm container (and your bash history, etc.) persist accross restarts. This volume is mounted over the `/buildkit` directory that comes with the container.  You will need to delete this volume (it gets recreated automatically based on the contents of the container) if you want to access the /buildkit directory that comes with the upgraded container. You can do that all follows:
+**Note**: we mount `/buildkit` as a volume so that any changes you make to the civicrm container (and your bash history, etc.) persist across restarts. This volume is mounted over the `/buildkit` directory that comes with the container.  You will need to delete this volume (it gets recreated automatically based on the contents of the container) if you want to access the /buildkit directory that comes with the upgraded container. You can do that all follows:
 
 From the civicrm-buildkit-docker directory:
 
