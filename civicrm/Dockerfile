@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.2-apache
 
 # Install apt packages
 #
@@ -7,7 +7,6 @@ FROM php:7.1-apache
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
-# * mcrypt: libmcrypt-dev
 # * soap: libxml2-dev
 # * zip: zlib1g-dev
 #
@@ -31,7 +30,6 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   libjpeg62-turbo-dev \
   libkrb5-dev \
   libmagickwand-dev \
-  libmcrypt-dev \
   libpng-dev \
   libxml2-dev \
   msmtp-mta \
@@ -52,7 +50,6 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install imap \
   && docker-php-ext-install intl \
-  && docker-php-ext-install mcrypt \
   && docker-php-ext-install mysqli \
   && docker-php-ext-install opcache \
   && docker-php-ext-install pdo_mysql \
