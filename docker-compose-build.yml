@@ -26,7 +26,7 @@ services:
       - drush-cache:/buildkit/.drush
       - npm-cache:/buildkit/.npm
       - git-cache:/buildkit/app/tmp/git-cache
-    restart: on-failure
+    restart: unless-stopped
 
   mysql:
     image: mysql:5.7
@@ -34,7 +34,7 @@ services:
       MYSQL_ROOT_PASSWORD: buildkit
     volumes:
       - mysql:/var/lib/mysql
-    restart: on-failure
+    restart: unless-stopped
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -46,13 +46,13 @@ services:
       PMA_HOST: mysql
       PMA_USER: root
       PMA_PASSWORD: buildkit
-    restart: on-failure
+    restart: unless-stopped
 
   maildev:
     image: djfarrelly/maildev
     ports:
       - "8082:80"
-    restart: on-failure
+    restart: unless-stopped
 
 volumes:
   amp:
