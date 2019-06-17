@@ -1,7 +1,6 @@
-version: '3.4'
+version: "3.6"
 
 services:
-
   civicrm:
     image: michaelmcandrew/civicrm-buildkit
     hostname: civicrm
