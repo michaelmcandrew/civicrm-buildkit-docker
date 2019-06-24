@@ -15,13 +15,13 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 
 1. Clone this repository
 2. From the repository root, run `docker-compose up -d` to start the containers
-3. Create a dmaster demo site with `docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080`
+3. Create a dmaster demo site with `docker-compose exec -u buildkit civicrm civibuild create dmaster`
 
-    * The build will run for some time (go get some coffee).  If successful, it will conclude with output similar to the following:
+    * The build will run for some time.  If successful, it will conclude with output similar to the following:
 
         ```
         - CMS_ROOT: /buildkit/build/dmaster
-        - CMS_URL: http://localhost:8080
+        - CMS_URL: http://dmaster.localhost:8080
         - CMS_DB_DSN: mysql://dmastercms_rftpp:Z8ADa62aJjf6n7IX@mysql:3306/dmastercms_rftpp?new_link=true
         - CIVI_DB_DSN: mysql://dmasterciv_6o62j:zhp2ftwJuw5W4WpG@mysql:3306/dmasterciv_6o62j?new_link=true
         - TEST_DB_DSN: mysql://dmastertes_gdc1v:eGCi5IT2bIkKv4EZ@mysql:3306/dmastertes_gdc1v?new_link=true
@@ -34,7 +34,7 @@ The **docker-compose.yml** file in this repository is a good starting point for 
     * Make note of the admin and demo credentials for future use. These credentials may also be found in the build directory, e.g. the credentials for `dmaster` are in `build/dmaster.sh`.
     * For more help with civibuild's create command, see the [buildkit documentation](https://docs.civicrm.org/dev/en/latest/tools/civibuild/)
 
-4. Navigate to your new CiviCRM development site at <http://localhost:8080>
+4. Navigate to your new CiviCRM development site at <http://dmaster.localhost:8080>
 
 Note: for less surprises, consider using a [stable release](https://github.com/michaelmcandrew/civicrm-buildkit-docker/releases).
 
@@ -60,11 +60,11 @@ The `build` directory of this repository is mounted into the civicrm container a
 
 We also mount an the `extra` directory of this repository at `/extra` for ad hoc use.
 
-### Multiple builds and site URLs
+### Site URLs
 
-In the Getting started example above, the URL has been explicitly set as <http://localhost:8080>. By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:8080`. This makes it simple to create multiple builds in the same container.
+By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:8080`. This makes it simple to create multiple builds in the same container.
 
-However you will need to manually create the `/etc/hosts` entries (or set up wildcard DNS) as the civicrm container is not able to access the host to do this for you.
+Other URLs can be passed to the civibuild command, however, you will need to ensure any domains are resolved appropriately, e.g. by adding entries to the `/etc/hosts` file.
 
 ### phpMyAdmin
 
