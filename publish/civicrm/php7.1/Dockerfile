@@ -1,4 +1,4 @@
-FROM php:7.1-apache-jessie
+FROM php:7.1-apache
 
 # Install apt packages
 #
@@ -20,7 +20,6 @@ FROM php:7.1-apache-jessie
 # * node 9.x (from nodesource repository)
 #
 # iproute2 is required to get host ip from container
-
 
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   && apt-get update \

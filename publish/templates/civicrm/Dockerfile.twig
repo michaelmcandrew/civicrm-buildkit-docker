@@ -1,4 +1,4 @@
-FROM php:{{ php_version }}-apache-jessie
+FROM php:{{ php_version }}-apache
 
 # Install apt packages
 #
@@ -20,7 +20,6 @@ FROM php:{{ php_version }}-apache-jessie
 # * node 9.x (from nodesource repository)
 #
 # iproute2 is required to get host ip from container
-
 
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   && apt-get update \
@@ -53,7 +52,9 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install imap \
   && docker-php-ext-install intl \
+{% if php_version not in ['7.2', '7.3'] %}
   && docker-php-ext-install mcrypt \
+{% endif %}
   && docker-php-ext-install mysqli \
   && docker-php-ext-install opcache \
   && docker-php-ext-install pdo_mysql \
