@@ -62,7 +62,7 @@ We also mount an the `extra` directory of this repository at `/extra` for ad hoc
 
 ### Multiple builds and site URLs
 
-In the Getting started example above, the URL has been explicitly set as <http://localhost:8080>. By default, new builds created with this Docker image are created at `http://[SITE_NAME].buildkit:8080`. This makes it simple to create multiple builds in the same container.
+In the Getting started example above, the URL has been explicitly set as <http://localhost:8080>. By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:8080`. This makes it simple to create multiple builds in the same container.
 
 However you will need to manually create the `/etc/hosts` entries (or set up wildcard DNS) as the civicrm container is not able to access the host to do this for you.
 
