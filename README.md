@@ -21,7 +21,7 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 
         ```
         - CMS_ROOT: /buildkit/build/dmaster
-        - CMS_URL: http://dmaster.localhost:8080
+        - CMS_URL: http://dmaster.localhost:7979
         - CMS_DB_DSN: mysql://dmastercms_rftpp:Z8ADa62aJjf6n7IX@mysql:3306/dmastercms_rftpp?new_link=true
         - CIVI_DB_DSN: mysql://dmasterciv_6o62j:zhp2ftwJuw5W4WpG@mysql:3306/dmasterciv_6o62j?new_link=true
         - TEST_DB_DSN: mysql://dmastertes_gdc1v:eGCi5IT2bIkKv4EZ@mysql:3306/dmastertes_gdc1v?new_link=true
@@ -34,7 +34,7 @@ The **docker-compose.yml** file in this repository is a good starting point for 
     * Make note of the admin and demo credentials for future use. These credentials may also be found in the build directory, e.g. the credentials for `dmaster` are in `build/dmaster.sh`.
     * For more help with civibuild's create command, see the [buildkit documentation](https://docs.civicrm.org/dev/en/latest/tools/civibuild/)
 
-4. Navigate to your new CiviCRM development site at <http://dmaster.localhost:8080>
+4. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
 
 Note: for less surprises, consider using a [stable release](https://github.com/michaelmcandrew/civicrm-buildkit-docker/releases).
 
@@ -62,7 +62,7 @@ We also mount an the `extra` directory of this repository at `/extra` for ad hoc
 
 ### Site URLs
 
-By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:8080`. This makes it simple to create multiple builds in the same container.
+By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:7979`. This makes it simple to create multiple builds in the same container.
 
 Other URLs can be passed to the civibuild command, however, you will need to ensure any domains are resolved appropriately, e.g. by adding entries to the `/etc/hosts` file.
 

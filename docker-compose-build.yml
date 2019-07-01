@@ -15,7 +15,7 @@ services:
     links:
       - mysql
     ports:
-      - "8080:8080"
+      - "7979:7979"
     volumes:
       - buildkit:/buildkit
       - ./build:/buildkit/build
