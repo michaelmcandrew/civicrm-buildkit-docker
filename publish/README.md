@@ -2,7 +2,7 @@
 
 The following script creates various CiviCRM Dockerfiles and associated assets.
 
-At the moment, it creates Dockerfiles for `civicrm:php5.6` and `civicrm:php7.0`, both based on the appropriate `php:*.*-apache-jessie` base image. It could be extended to generate other versions of CiviCRM as well (e.g. `php7.0-fpm`)
+At the moment, it creates Dockerfiles for `civicrm:php5.6`, `civicrm:php7.0`, `civicrm:php7.1`, `civicrm:php7.2` and `civicrm:php7.3`, based on the appropriate `php:*.*-apache` base image. It could be extended to generate other versions of CiviCRM as well (e.g. `php7.0-fpm`)
 
 It does not currently build images for the Dockerfiles or publish these images to Dockerhub (though it could be extended to do so).
 
@@ -26,6 +26,11 @@ civicrm:
 3. Run `php publish.php`
 4. Check the generated directories in `publish/civicrm`
 5. Optionally, copy the contents of `publish/civicrm/php7.0` to `civicrm` with `cp -r publish/civicrm/php7.0/* civicrm`
+
+If you don't have PHP or composer installed locally you can use Docker images to run the `publish.php` script by using the commands below:
+
+1. `docker run -it --rm -v "$PWD":/app composer install`
+1. `docker run -it --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp php:latest php publish.php`
 
 ## Publishing updates to https://hub.docker.com
 
