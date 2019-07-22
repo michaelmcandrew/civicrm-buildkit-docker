@@ -7,7 +7,9 @@ FROM php:{{ php_version }}-apache
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
+{% if php_version in ['5.6', '7.0', '7.1'] %}
 # * mcrypt: libmcrypt-dev
+{% endif %}
 # * soap: libxml2-dev
 # * zip: zlib1g-dev
 #
@@ -31,7 +33,9 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   libjpeg62-turbo-dev \
   libkrb5-dev \
   libmagickwand-dev \
+{% if php_version in ['5.6', '7.0', '7.1'] %}
   libmcrypt-dev \
+{% endif %}
   libpng-dev \
   libxml2-dev \
   msmtp-mta \
@@ -52,7 +56,7 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install imap \
   && docker-php-ext-install intl \
-{% if php_version not in ['7.2', '7.3'] %}
+{% if php_version in ['5.6', '7.0', '7.1'] %}
   && docker-php-ext-install mcrypt \
 {% endif %}
   && docker-php-ext-install mysqli \
