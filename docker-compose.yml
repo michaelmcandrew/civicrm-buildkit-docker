@@ -22,7 +22,6 @@ services:
       - npm-cache:/buildkit/.npm
       - git-cache:/buildkit/app/tmp/git-cache
     restart: unless-stopped
-
   mysql:
     image: mysql:5.7
     environment:
