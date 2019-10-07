@@ -7,7 +7,6 @@ FROM php:7.2-apache
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
-# * mcrypt: libmcrypt-dev
 # * soap: libxml2-dev
 # * zip: zlib1g-dev
 #
@@ -31,7 +30,6 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
   libjpeg62-turbo-dev \
   libkrb5-dev \
   libmagickwand-dev \
-  libmcrypt-dev \
   libpng-dev \
   libxml2-dev \
   msmtp-mta \
