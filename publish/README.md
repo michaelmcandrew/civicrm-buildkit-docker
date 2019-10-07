@@ -32,6 +32,6 @@ civicrm:
 From the repo root directory:
 
 ```
-docker build civicrm --no-cache -t michaelmcandrew/civicrm-buildkit-docker
-docker push michaelmcandrew/civicrm-buildkit-docker
+docker build civicrm --no-cache -t michaelmcandrew/civicrm-buildkit
+docker push michaelmcandrew/civicrm-buildkit
 ```
