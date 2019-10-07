@@ -20,7 +20,8 @@ foreach ($phpVersions as $phpVersion) {
     file_put_contents($outputFile, $twig->render($template, ['php_version' => $phpVersion]));
   }
   echo "- build image\n";
-  `docker build civicrm/php$phpVersion --no-cache -t michaelmcandrew/civicrm-buildkit:php$phpVersion`;
+  $command = "docker build " . __DIR__ . "civicrm/php{$phpVersion} --no-cache -t michaelmcandrew/civicrm-buildkit:php{$phpVersion}";
+  shell_exec($command);
   echo "- push image\n";
   `docker push michaelmcandrew/civicrm-buildkit:php$phpVersion`;
 }
