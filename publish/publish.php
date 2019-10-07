@@ -6,7 +6,7 @@ $twig = new Twig_Environment($loader, array());
 $phpVersions = ['5.6', '7.0', '7.1', '7.2', '7.3'];
 
 foreach ($phpVersions as $phpVersion) {
-  echo "Publishing phpVersion\n";
+  echo "Publishing {$phpVersion}\n";
   `docker pull php:$phpVersion`;
   $dir = __DIR__ . "/civicrm/php{$phpVersion}";
   if (!is_dir($dir)) {
