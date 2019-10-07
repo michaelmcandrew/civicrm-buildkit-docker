@@ -27,10 +27,11 @@ civicrm:
 4. Check the generated directories in `publish/civicrm`
 5. Optionally, copy the contents of `publish/civicrm/php7.0` to `civicrm` with `cp -r publish/civicrm/php7.0/* civicrm`
 
-If you don't have PHP or composer installed locally you can use Docker images to run the `publish.php` script by using the commands below:
+If you don't have PHP or composer installed locally you can use Docker images to run the `publish.php` script as follows:
 
-1. `docker run -it --rm -v "$PWD":/app composer install`
-1. `docker run -it --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp php:latest php publish.php`
+1. Move to the `publish` directory
+1. Run `docker run -it --rm -v "$PWD":/app composer install`
+1. Run `docker run -it --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp php php publish.php`
 
 ## Publishing updates to https://hub.docker.com
 
