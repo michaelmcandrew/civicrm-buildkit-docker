@@ -21,7 +21,7 @@ FROM php:7.3-apache
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-  apt-transport-https \
+  apt-transport-https
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get update \
