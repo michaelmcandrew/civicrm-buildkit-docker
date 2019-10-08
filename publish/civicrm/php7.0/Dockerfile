@@ -20,9 +20,12 @@ FROM php:7.0-apache
 #
 # iproute2 is required to get host ip from container
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-
 RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  apt-transport-https \
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
   git \
   iproute2 \
