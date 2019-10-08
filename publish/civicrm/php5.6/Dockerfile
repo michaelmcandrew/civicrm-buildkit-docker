@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:5.6-apache-stretch
 
 # Install apt packages
 #
@@ -38,7 +38,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libpng-dev \
   libxml2-dev \
   msmtp-mta \
-  mysql-client \
+  default-mysql-client \
   nodejs \
   sudo \
   unzip \
