@@ -17,12 +17,12 @@ FROM php:7.0-apache
 # * sudo
 # * unzip
 # * zip
-# * node 9.x (from nodesource repository)
 #
 # iproute2 is required to get host ip from container
 
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
-  && apt-get update \
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+
+RUN apt-get update \
   && apt-get install -y --no-install-recommends \
   git \
   iproute2 \
