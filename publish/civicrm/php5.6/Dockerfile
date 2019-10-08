@@ -43,7 +43,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   sudo \
   unzip \
   zip \
-  zlib1g-dev \
+  libzip-dev \
   && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
