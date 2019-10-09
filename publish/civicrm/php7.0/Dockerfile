@@ -128,6 +128,8 @@ USER root
 
 COPY ./docker-civicrm-entrypoint /usr/local/bin
 
+RUN chmod u+x /usr/local/bin/docker-civicrm-entrypoint
+
 ENTRYPOINT [ "docker-civicrm-entrypoint" ]
 
 CMD ["apache2-foreground"]
