@@ -13,7 +13,7 @@ foreach ($phpVersions as $phpVersion) {
     `mkdir -p $versionDir`;
   }
   foreach (glob($dir . '/templates/civicrm/*.twig') as $file) {
-    $outputFile = $dir . '/' . basename($file, '.twig');
+    $outputFile = $versionDir . '/' . basename($file, '.twig');
     $template = basename($file);
     file_put_contents($outputFile, $twig->render($template, ['php_version' => $phpVersion]));
   }
