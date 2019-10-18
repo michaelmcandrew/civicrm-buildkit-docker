@@ -30,8 +30,8 @@ civicrm:
 If you don't have PHP or composer installed locally you can use Docker images to run the `generate.php` script as follows:
 
 1. Move to the `publish` directory
-1. Run `docker run -it --rm -v "$PWD":/app composer install`
-1. Run `docker run -it --rm -v "$PWD/..":/usr/src/myapp -w /usr/src/myapp/publish php php generate.php`
+1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app composer install`
+1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD/..":/usr/src/myapp -w /usr/src/myapp/publish php php generate.php`
 
 ## Publishing updates to https://hub.docker.com
 
