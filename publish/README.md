@@ -22,16 +22,16 @@ civicrm:
 ## Updating Dockerfiles
 
 1. From the `publish` directory, run `composer install`
-2. Make any necessary changes to the `templates` and `publish.php` script.
-3. Run `php publish.php`
+2. Make any necessary changes to the `templates` and `generate.php` script.
+3. Run `php generate.php`
 4. Check the generated directories in `publish/civicrm`
 5. Optionally, copy the contents of `publish/civicrm/php7.0` to `civicrm` with `cp -r publish/civicrm/php7.0/* civicrm`
 
-If you don't have PHP or composer installed locally you can use Docker images to run the `publish.php` script as follows:
+If you don't have PHP or composer installed locally you can use Docker images to run the `generate.php` script as follows:
 
 1. Move to the `publish` directory
-1. Run `docker run -it --rm -v "$PWD":/app composer install`
-1. Run `docker run -it --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp php php publish.php`
+1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app composer install`
+1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD/..":/usr/src/myapp -w /usr/src/myapp/publish php php generate.php`
 
 ## Publishing updates to https://hub.docker.com
 
