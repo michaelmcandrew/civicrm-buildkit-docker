@@ -162,4 +162,4 @@ Contributions to this repository are very welcome. Feel free to submit a pull re
 
 ## License
 
-This extension is licensed under AGPL-3.0.
+This extension is licensed under [AGPL-3.0](LICENSE).
