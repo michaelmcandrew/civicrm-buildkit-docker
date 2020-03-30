@@ -115,7 +115,7 @@ You can create a custom build with a custom UID for the buildkit user as follows
 
 ## Getting help
 
-Feel free to ask any questions you have on the [sysadmin](https://chat.civicrm.org/civicrm/channels/sysadmin) chatroom (mentioning @michaelmcandrew if you feel like it), or file an issue in the [github issue queue](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues).
+Feel free to ask any questions you have in the [docker](https://chat.civicrm.org/civicrm/channels/docker) chatroom (mentioning @michaelmcandrew if you feel like it), or file an issue in the [github issue queue](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues).
 
 ## Upgrading
 
