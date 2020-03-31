@@ -1,5 +1,5 @@
 <?php
-include_once('include.php');
+include_once 'include.php';
 $baseFlavour = 'apache-buster';
 
 // Update templates
