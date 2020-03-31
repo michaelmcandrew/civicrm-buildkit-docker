@@ -1,6 +1,6 @@
 <?php
 include_once('include.php');
-$baseFlavour = 'apache-stretch';
+$baseFlavour = 'apache-buster';
 
 // Update templates
 foreach ($phpVersions as $phpVersion) {
