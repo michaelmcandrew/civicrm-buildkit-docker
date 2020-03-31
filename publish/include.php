@@ -1,3 +1,3 @@
 <?php
-$defaultVersion = '7.2';
-$phpVersions = ['5.6', '7.0', '7.1', '7.2', '7.3'];
+$defaultVersion = '7.3';
+$phpVersions = ['7.2', '7.3', '7.4'];

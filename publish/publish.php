@@ -6,7 +6,7 @@ $baseFlavour = 'apache-stretch';
 foreach ($phpVersions as $phpVersion) {
   echo "Publishing {$phpVersion}\n";
   echo "- pull base image\n";
-  `docker pull php:7.2-$baseFlavour`;
+  `docker pull php:$phpVersion-$baseFlavour`;
   echo "- build image\n";
   $command = "docker build " . __DIR__ . "/civicrm/php{$phpVersion} --no-cache -t michaelmcandrew/civicrm-buildkit:php{$phpVersion}";
   shell_exec($command);
