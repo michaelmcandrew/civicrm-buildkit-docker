@@ -1,4 +1,4 @@
-FROM php:7.4-apache-stretch
+FROM php:7.4-apache-buster
 
 # Install apt packages
 #
