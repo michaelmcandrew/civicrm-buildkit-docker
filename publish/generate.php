@@ -1,11 +1,12 @@
 <?php
-include_once('include.php');
+include_once 'include.php';
 require_once __DIR__ . '/vendor/autoload.php';
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates/civicrm');
 $twig = new Twig_Environment($loader, array());
 
 $dir = __DIR__;
 // Update templates
+`rm -r $dir/civicrm`;
 foreach ($phpVersions as $phpVersion) {
   echo "Generating {$phpVersion}\n";
   $versionDir = $dir . "/civicrm/php{$phpVersion}";
