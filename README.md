@@ -11,6 +11,8 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 * Docker
 * Docker compose
 
+Unfortunately CiviCRM buildkit docker isn't currently working on the Docker Desktop for Windows - see [issue #52](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/52).
+
 ## Getting started
 
 1. Clone this repository
