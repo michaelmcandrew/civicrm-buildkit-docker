@@ -86,11 +86,9 @@ WORKDIR /buildkit
 
 ENV PATH="/buildkit/bin:${PATH}"
 
-RUN git clone https://github.com/civicrm/civicrm-buildkit.git buildkit-tmp
-
-RUN mv buildkit-tmp/* buildkit-tmp/.git* .
-
-RUN rmdir buildkit-tmp
+RUN git init . \
+    && git remote add origin https://github.com/civicrm/civicrm-buildkit.git \
+    && git pull origin master
 
 # Need to create this before we configure apache, otherwise it will complain
 RUN mkdir -p .amp/apache.d
