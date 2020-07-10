@@ -25,7 +25,6 @@ civicrm:
 2. Make any necessary changes to the `templates` and `generate.php` script.
 3. Run `php generate.php`
 4. Check the generated directories in `publish/civicrm`
-5. Optionally, copy the contents of `publish/civicrm/php7.3` to `civicrm` with `cp -r publish/civicrm/php7.3/* civicrm`
 
 If you don't have PHP or composer installed locally you can use Docker images to run the `generate.php` script as follows:
 
