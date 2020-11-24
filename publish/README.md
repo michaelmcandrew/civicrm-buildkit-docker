@@ -2,7 +2,7 @@
 
 The following script creates various CiviCRM Dockerfiles and associated assets.
 
-At the moment, it creates Dockerfiles for `civicrm:php5.6`, `civicrm:php7.0`, `civicrm:php7.1`, `civicrm:php7.2` and `civicrm:php7.3`, based on the appropriate `php:*.*-apache` base image. It could be extended to generate other versions of CiviCRM as well (e.g. `php7.0-fpm`)
+The script creates Dockerfiles for the versions of PHP as specified in [`include.php`](include.php), based on the appropriate `php:*.*-apache` base image. It could be extended to generate other versions of CiviCRM as well (e.g. `php7.3-fpm`)
 
 It does not currently build images for the Dockerfiles or publish these images to Dockerhub (though it could be extended to do so).
 
@@ -14,10 +14,10 @@ Until the above images are automatically published, you can use these files as f
 
 ```yml
 civicrm:
-  build: publish/civicrm/php5.6
+  build: publish/civicrm/php7.3
 ```
 
-2. Build and tag an image `docker build publish/civicrm/php5.6 -t civicrm:5.6`
+2. Build and tag an image `docker build publish/civicrm/php7.3 -t civicrm:7.3`
 
 ## Updating Dockerfiles
 
@@ -25,7 +25,6 @@ civicrm:
 2. Make any necessary changes to the `templates` and `generate.php` script.
 3. Run `php generate.php`
 4. Check the generated directories in `publish/civicrm`
-5. Optionally, copy the contents of `publish/civicrm/php7.0` to `civicrm` with `cp -r publish/civicrm/php7.0/* civicrm`
 
 If you don't have PHP or composer installed locally you can use Docker images to run the `generate.php` script as follows:
 
