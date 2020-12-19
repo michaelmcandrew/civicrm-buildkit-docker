@@ -5,15 +5,15 @@ set -e
 CONTAINER_IP=`/sbin/ip route|awk '/default/ { print $3 }'`
 cat << EOF > /usr/local/etc/php/conf.d/debug.ini
 zend_extension=xdebug.so
+xdebug.mode=debug
+xdebug.start_with_request=yes
 xdebug.show_error_trace=1
-xdebug.remote_enable=1
-xdebug.remote_autostart=1
-xdebug.profiler_enable_trigger=1
-xdebug.profiler_output_dir=/debug
+xdebug.discover_client_host=yes
+sdebug.client_host=host.docker.internal
+xdebug.output_dir=/debug
 xdebug.var_display_max_depth = 8
 xdebug.var_display_max_children = 256
-xdebug.var_display_max_data = 1024 
-xdebug.remote_host=${CONTAINER_IP}
+xdebug.var_display_max_data = 1024
 max_execution_time=600
 EOF
 
