@@ -44,6 +44,13 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libzip-dev \
   && rm -r /var/lib/apt/lists/*
 
+# Install cli-essentials:
+# less is a requirement of wp-cli, not included in debian-stretch
+# install some common text editors
+RUN apt-get install -y --no-install-recommends \
+  less \
+  vim less
+
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
 RUN docker-php-ext-install bcmath \
