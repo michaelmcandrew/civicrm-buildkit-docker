@@ -41,8 +41,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   sudo \
   unzip \
   zip \
-  libzip-dev \
-  && rm -r /var/lib/apt/lists/*
+  libzip-dev
 
 # Install cli-essentials:
 # less is a requirement of wp-cli, not included in debian-stretch
@@ -50,6 +49,9 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 RUN apt-get install -y --no-install-recommends \
   less \
   vim less
+
+# clean-up after apt
+RUN rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
