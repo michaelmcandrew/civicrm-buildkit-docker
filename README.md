@@ -10,8 +10,9 @@ The **docker-compose.yml** file in this repository is a good starting point for 
 
 * Docker
 * Docker compose
+* WSL2 [for running on Windows]
 
-Unfortunately CiviCRM buildkit docker isn't currently working on the Docker Desktop for Windows - see [issue #52](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/52).
+There is an issue with file permissions if you are using Windows. Follow these [instructions for enabling WSL2](https://docs.docker.com/docker-for-windows/wsl/) integration and upgrading an existing WSL installation to WSL2/ Background on the [issue #52](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/52).
 
 ## Getting started
 
