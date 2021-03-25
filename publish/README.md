@@ -1,4 +1,4 @@
-# Publishing Dockerfiles
+# Publishing Images
 
 The following script creates various CiviCRM Dockerfiles and associated assets.
 
@@ -11,25 +11,25 @@ civicrm:
   build: publish/civicrm/php7.3
 ```
 
-1. Reference a different Dockerfile in the `docker-compose.yml` distributed with this repository:
+Or first, build and tag an image `docker build publish/civicrm/php7.3 -t myimage:php-7.3` and update the compse file:
 
 ```yml
 civicrm:
-  build: publish/civicrm/php7.3
+  image: myimage:php-7.3
 ```
 
-2. Build and tag an image `docker build publish/civicrm/php7.3 -t civicrm:7.3`
+## Updating Image Builds (Dockerfiles)
 
-## Updating Dockerfiles
+For code-reuse and "DRY", the variants of the civicrm Dockerfile in this directory are generated using a [twig](https://github.com/twigphp/Twig)  template.
 
 1. From the `publish` directory, run `composer install`
 2. Make any necessary changes to the `templates` and `generate.php` script.
 3. Run `php generate.php`
 4. Check the generated directories in `publish/civicrm`
 
-If you don't have PHP or composer installed locally you can use Docker images to run the `generate.php` script as follows:
+If you don't have PHP or composer installed locally you can use a container to run the `generate.php` script as follows:
 
-1. Move to the `publish` directory
+1. From the `publish` directory
 1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app composer install`
 1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD/..":/usr/src/myapp -w /usr/src/myapp/publish php php generate.php`
 
