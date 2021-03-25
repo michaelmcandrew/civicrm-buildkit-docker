@@ -3,21 +3,29 @@ FROM php:7.3-apache-stretch
 # Install apt packages
 #
 # Required for php extensions
-# * gd: libpng-dev
+# * gd: libpng-dev, libjpeg62-turbo-dev
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
 # * soap: libxml2-dev
-# * zip: zlib1g-dev
+# * zip: libzip-dev
 #
 # Used in the build process
+# * default-mysql-client
 # * git
-# * mysql-client
+# * nodejs
 # * sudo
 # * unzip
 # * zip
-#
-# iproute2 is required to get host ip from container
+# 
+# Other useful utilities
+# * bash-completion
+# * iproute2 (required to get host ip from container)
+# * less
+# * msmtp-mta (for routing mail to maildev)
+# * nano
+# * rsync
+# * vim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -37,18 +45,18 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libkrb5-dev \
   libmagickwand-dev \
   libpng-dev \
-  libzip-dev
   libxml2-dev \
+  libzip-dev \
   msmtp-mta \
-  nano
+  nano \
   nodejs \
+  rsync \
   sudo \
   unzip \
   vim \
-  zip
+  zip \
 
-# clean-up after apt
-RUN rm -r /var/lib/apt/lists/*
+  && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)

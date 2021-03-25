@@ -3,21 +3,29 @@ FROM php:7.2-apache-stretch
 # Install apt packages
 #
 # Required for php extensions
-# * gd: libpng-dev
+# * gd: libpng-dev, libjpeg62-turbo-dev
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
 # * soap: libxml2-dev
-# * zip: zlib1g-dev
+# * zip: libzip-dev
 #
 # Used in the build process
+# * default-mysql-client
 # * git
-# * mysql-client
+# * nodejs
 # * sudo
 # * unzip
 # * zip
-#
-# iproute2 is required to get host ip from container
+# 
+# Other useful utilities
+# * bash-completion
+# * iproute2 (required to get host ip from container)
+# * less
+# * msmtp-mta (for routing mail to maildev)
+# * nano
+# * rsync
+# * vim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -26,8 +34,11 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
+  bash-completion \
+  default-mysql-client \
   git \
   iproute2 \
+  less \
   libc-client-dev \
   libicu-dev \
   libjpeg62-turbo-dev \
@@ -35,25 +46,17 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libmagickwand-dev \
   libpng-dev \
   libxml2-dev \
+  libzip-dev \
   msmtp-mta \
-  default-mysql-client \
+  nano \
   nodejs \
+  rsync \
   sudo \
   unzip \
+  vim \
   zip \
-  libzip-dev
 
-# Install cli-essentials:
-# bash-completion
-# less is a requirement of wp-cli, not included in debian-stretch
-# install some common text editors
-RUN apt-get install -y --no-install-recommends \
-  bash-completion \
-  less \
-  vim less
-
-# clean-up after apt
-RUN rm -r /var/lib/apt/lists/*
+  && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
