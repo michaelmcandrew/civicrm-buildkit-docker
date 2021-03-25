@@ -37,6 +37,7 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
+  default-mysql-client \
   git \
   iproute2 \
   libc-client-dev \
@@ -46,14 +47,13 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libmagickwand-dev \
   libpng-dev \
   libxml2-dev \
+  libzip-dev \
   msmtp-mta \
-  default-mysql-client \
   nodejs \
   rsync \
   sudo \
   unzip \
   zip \
-  libzip-dev \
   && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
