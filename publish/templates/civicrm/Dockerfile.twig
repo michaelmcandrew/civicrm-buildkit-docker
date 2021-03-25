@@ -37,6 +37,7 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
+  bash-completion \
   default-mysql-client \
   git \
   iproute2 \
