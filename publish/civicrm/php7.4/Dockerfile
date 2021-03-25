@@ -3,21 +3,28 @@ FROM php:7.4-apache-buster
 # Install apt packages
 #
 # Required for php extensions
-# * gd: libpng-dev
+# * gd: libpng-dev, libjpeg62-turbo-dev
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
 # * soap: libxml2-dev
-# * zip: zlib1g-dev
+# * zip: libzip-dev
 #
 # Used in the build process
 # * git
-# * mysql-client
+# * nodejs
 # * sudo
 # * unzip
 # * zip
 #
-# iproute2 is required to get host ip from container
+# Other Utilities
+# * bash-completion
+# * iproute2 (required to get host ip from container)
+# * msmtp-mta (for routing mail to maildev)
+# * rsync
+# * nano
+# * vim
+# * less
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -26,6 +33,8 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
+  bash-completion \
+  default-mysql-client \
   git \
   iproute2 \
   libc-client-dev \
@@ -35,13 +44,15 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libmagickwand-dev \
   libpng-dev \
   libxml2-dev \
+  libzip-dev \
   msmtp-mta \
-  default-mysql-client \
+  nano \
   nodejs \
+  rsync \
   sudo \
   unzip \
+  vim \
   zip \
-  libzip-dev \
   && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
