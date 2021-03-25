@@ -26,31 +26,26 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
+  bash-completion \
+  default-mysql-client \
   git \
   iproute2 \
+  less \
   libc-client-dev \
   libicu-dev \
   libjpeg62-turbo-dev \
   libkrb5-dev \
   libmagickwand-dev \
   libpng-dev \
+  libzip-dev
   libxml2-dev \
   msmtp-mta \
-  default-mysql-client \
+  nano
   nodejs \
   sudo \
   unzip \
-  zip \
-  libzip-dev
-
-# Install cli-essentials:
-# bash-completion
-# less is a requirement of wp-cli, not included in debian-stretch
-# install some common text editors
-RUN apt-get install -y --no-install-recommends \
-  bash-completion \
-  less \
-  vim less
+  vim \
+  zip
 
 # clean-up after apt
 RUN rm -r /var/lib/apt/lists/*
