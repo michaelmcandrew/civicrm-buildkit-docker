@@ -4,11 +4,12 @@ The following script creates various CiviCRM Dockerfiles and associated assets.
 
 The script creates Dockerfiles for the versions of PHP as specified in [`include.php`](include.php), based on the appropriate `php:*.*-apache` base image. It could be extended to generate other versions of CiviCRM as well (e.g. `php7.3-fpm`)
 
-It does not currently build images for the Dockerfiles or publish these images to Dockerhub (though it could be extended to do so).
+Actually publishing images is not handled in this repo, but the alternate images are tagged and available on Docker Hub. If you don't want to use the images from Docker Hub, or you generate new ones, you can update your `docker-compose.yml` by replacing the `image:` declaration with a `build:` declaration.
 
-## Usage
-
-Until the above images are automatically published, you can use these files as follows:
+```yml
+civicrm:
+  build: publish/civicrm/php7.3
+```
 
 1. Reference a different Dockerfile in the `docker-compose.yml` distributed with this repository:
 
@@ -33,6 +34,8 @@ If you don't have PHP or composer installed locally you can use Docker images to
 1. Run `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD/..":/usr/src/myapp -w /usr/src/myapp/publish php php generate.php`
 
 ## Publishing updates to https://hub.docker.com
+
+This happens automatically each night. It can be done manually (with appropriate credentials)
 
 From the repo root directory:
 
