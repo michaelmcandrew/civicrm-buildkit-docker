@@ -11,7 +11,7 @@ civicrm:
   build: publish/civicrm/php7.3
 ```
 
-Or first, build and tag an image `docker build publish/civicrm/php7.3 -t myimage:php-7.3` and update the compse file:
+Or first, build and tag an image `docker build publish/civicrm/php7.3 -t myimage:php-7.3` and update the compose file:
 
 ```yml
 civicrm:
