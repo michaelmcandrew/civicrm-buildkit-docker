@@ -2,16 +2,19 @@
 
 CiviCRM buildkit on Docker is primarily built for development. It may also be useful for hosting. Contributions welcome.
 
-The **CiviCRM Dockerfile** ([`civicrm/Dockerfile`](civicrm/Dockerfile)) in this repo is published on Docker hub at <https://hub.docker.com/r/michaelmcandrew/civicrm/>. It is designed to work with a MySQL compatible container. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
+The docker image at <https://hub.docker.com/r/michaelmcandrew/civicrm/> is built with the [`civicrm/Dockerfile`](civicrm/Dockerfile) in this repo and published nightly. It requires another container running MySQL, such as configured in the `docker-compose.yml`. You may wish to use it with other containers like `phpmyadmin` and `maildev`.
 
-The **docker-compose.yml** file in this repository is a good starting point for Docker development. Advanced users may wish to create their own `docker-compose.yml`.
+See below for information on [updating your local images](#Upgrading) and an [overview of the architecture](#architecture) of this this container and how to contribute to CiviCRM's cloud-native initiative.
+
+The **docker-compose.yml** file in this repository is a good starting point for a Docker-based CiviCRM development environment. You can replace it with your own, or use an alternate by passing the file location with the `-f` or `--file` options to `docker-compose`. See the section on [Custom Images](#custom-images) below for more tips and how to use the `docker-compose-build.yml` file in this repo.
 
 ## Requirements
 
 * Docker
 * Docker compose
+* WSL2 [for running on Windows]
 
-Unfortunately CiviCRM buildkit docker isn't currently working on the Docker Desktop for Windows - see [issue #52](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/52).
+There is an issue with file permissions if you are using Windows. Follow these [instructions for enabling WSL2](https://docs.docker.com/docker-for-windows/wsl/) integration and upgrading an existing WSL installation to WSL2. Background on the [issue #52](https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/52).
 
 ## Getting started
 
@@ -105,7 +108,7 @@ See [publish/README.md](publish/README.md) for instructions on how to build Civi
 
 Bind mounts are fussy when it comes to user ids and group ids. If the user on your host machine has a different UID and GID to the buildkit user in the container (which is 1000 by default), you can create a custom build (see below) that passes BUILDKIT_UID and BUILDKIT_GID as arguments.
 
-## Custom builds
+## Custom Images
 
 This repository comes with a `docker-compose-build.yml` that can be used for custom builds. Custom builds are useful if you want to pass particular arguments to the build. For example, you can define the UID and GID of the buildkit user (see below).
 
