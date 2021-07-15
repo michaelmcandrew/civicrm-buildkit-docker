@@ -6,13 +6,12 @@ $baseFlavour = 'apache-buster';
 foreach ($phpVersions as $phpVersion) {
   echo "Publishing {$phpVersion}\n";
   echo "- pull base image\n";
-  `docker pull php:$phpVersion-$baseFlavour`;
+  passthru("docker pull php:$phpVersion-$baseFlavour");
   echo "- build image\n";
-  $command = "docker build " . __DIR__ . "/civicrm/php{$phpVersion} --no-cache -t michaelmcandrew/civicrm-buildkit:php{$phpVersion}";
-  shell_exec($command);
+  passthru("docker build " . __DIR__ . "/civicrm/php{$phpVersion} --no-cache -t michaelmcandrew/civicrm-buildkit:php{$phpVersion}");
   echo "- push image\n";
-  `docker push michaelmcandrew/civicrm-buildkit:php$phpVersion`;
+  passthru("docker push michaelmcandrew/civicrm-buildkit:php$phpVersion");
 }
 echo "push 'latest'";
-`docker tag michaelmcandrew/civicrm-buildkit:php$defaultVersion michaelmcandrew/civicrm-buildkit:latest`;
-`docker push michaelmcandrew/civicrm-buildkit:latest`;
+passthru("docker tag michaelmcandrew/civicrm-buildkit:php$defaultVersion michaelmcandrew/civicrm-buildkit:latest");
+passthru("docker push michaelmcandrew/civicrm-buildkit:latest");
