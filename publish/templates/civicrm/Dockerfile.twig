@@ -1,8 +1,4 @@
-{% if php_version in ['7.2', '7.3'] %}
-FROM php:{{ php_version }}-apache-stretch
-{% else %}
 FROM php:{{ php_version }}-apache-buster
-{% endif %}
 
 # Install apt packages
 #
@@ -62,7 +58,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
 RUN docker-php-ext-install bcmath \
-{% if php_version in ['7.2', '7.3'] %}
+{% if php_version in ['7.3'] %}
   && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
 {% else %}
   && docker-php-ext-configure gd --with-jpeg \
