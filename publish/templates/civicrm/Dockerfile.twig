@@ -12,7 +12,6 @@ FROM php:{{ php_version }}-apache-buster
 #
 # Used in the build process
 # * git
-# * nodejs
 # * sudo
 # * unzip
 # * zip
@@ -28,11 +27,6 @@ FROM php:{{ php_version }}-apache-buster
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-  apt-transport-https
-
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
   bash-completion \
   default-mysql-client \
   git \
@@ -47,7 +41,6 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libzip-dev \
   msmtp-mta \
   nano \
-  nodejs \
   rsync \
   sudo \
   unzip \
