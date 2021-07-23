@@ -1,4 +1,4 @@
-FROM php:7.2-apache-stretch
+FROM php:8.0-apache-buster
 
 # Install apt packages
 #
@@ -11,8 +11,8 @@ FROM php:7.2-apache-stretch
 # * zip: libzip-dev
 #
 # Used in the build process
+# * default-mysql-client
 # * git
-# * nodejs
 # * sudo
 # * unzip
 # * zip
@@ -28,15 +28,11 @@ FROM php:7.2-apache-stretch
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-  apt-transport-https
-
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
   bash-completion \
   default-mysql-client \
   git \
   iproute2 \
+  less \
   libc-client-dev \
   libicu-dev \
   libjpeg62-turbo-dev \
@@ -47,18 +43,18 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
   libzip-dev \
   msmtp-mta \
   nano \
-  nodejs \
   rsync \
   sudo \
   unzip \
   vim \
   zip \
+
   && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
 RUN docker-php-ext-install bcmath \
-  && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
+  && docker-php-ext-configure gd --with-jpeg \
   && docker-php-ext-install gd \
   && docker-php-ext-install gettext \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
