@@ -13,6 +13,7 @@ FROM php:7.3-apache-buster
 # Used in the build process
 # * default-mysql-client
 # * git
+# * nodejs
 # * sudo
 # * unzip
 # * zip
@@ -27,6 +28,11 @@ FROM php:7.3-apache-buster
 # * less
 
 RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  apt-transport-https
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
   bash-completion \
   default-mysql-client \
@@ -43,6 +49,7 @@ RUN apt-get update \
   libzip-dev \
   msmtp-mta \
   nano \
+  nodejs \
   rsync \
   sudo \
   unzip \
