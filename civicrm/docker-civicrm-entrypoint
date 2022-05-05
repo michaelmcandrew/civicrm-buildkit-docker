@@ -1,21 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-# xdebug setup
-CONTAINER_IP=`/sbin/ip route|awk '/default/ { print $3 }'`
-cat << EOF > /usr/local/etc/php/conf.d/debug.ini
-zend_extension=xdebug.so
-xdebug.show_error_trace=1
-xdebug.remote_enable=1
-xdebug.remote_autostart=1
-xdebug.profiler_enable_trigger=1
-xdebug.profiler_output_dir=/debug
-xdebug.var_display_max_depth = 8
-xdebug.var_display_max_children = 256
-xdebug.var_display_max_data = 1024 
-xdebug.remote_host=${CONTAINER_IP}
-max_execution_time=600
+XDEBUG_CLIENT=""
+
+# Check if docker host available 
+if getent hosts host.docker.internal > /dev/null
+then
+  XDEBUG_CLIENT="host.docker.internal"
+else 
+	# use gateway
+	XDEBUG_CLIENT=`/sbin/ip route|awk '/default/ { print $3 }'`
+fi
+
+cat << EOF > /usr/local/etc/php/conf.d/99-debug-host.ini
+xdebug.client_host=${XDEBUG_CLIENT}
 EOF
+
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then

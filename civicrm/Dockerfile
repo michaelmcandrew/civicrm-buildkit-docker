@@ -123,6 +123,10 @@ COPY --chown=buildkit:buildkit amp.services.yml /buildkit/.amp/services.yml
 
 COPY buildkit.ini /usr/local/etc/php/conf.d/buildkit.ini
 
+COPY php.ini /usr/local/etc/php/php.ini
+
+COPY php-cli.ini /usr/local/etc/php/php-cli.ini
+
 COPY msmtprc /etc/msmtprc
 
 COPY apache.conf /etc/apache2/conf-enabled/buildkit.conf
