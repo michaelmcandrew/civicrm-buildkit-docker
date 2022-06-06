@@ -41,6 +41,8 @@ There is an issue with file permissions if you are using Windows. Follow these [
 
 4. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
 
+In order to 'interact' with your codebase with comand line tools such civix etc, you'll need to run a bash shell 'within' the container. This can be done using the ```bkb``` alias defined below.
+
 Note: for less surprises, consider using a [stable release](https://github.com/michaelmcandrew/civicrm-buildkit-docker/releases).
 
 ## Usage
