@@ -16,7 +16,7 @@ exec('git -C ' . __DIR__ . ' status --porcelain', $status);
 if (count($status)) {
     echo "Changes\n";
     passthru('git -C ' . __DIR__ . ' add .');
-    passthru('git -C ' . __DIR__ . ' commit -m "Updating generated content"');
+    passthru('git -C ' . __DIR__ . ' commit -m "Updating docker artifacts from templates"');
     passthru('git -C ' . __DIR__ . ' push');
 }
 passthru('php publish/publish.php');
