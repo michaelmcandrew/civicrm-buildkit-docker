@@ -1,3 +1,7 @@
+# TODO: Consider switching to buster and relying more on civi-download-tools
+# See https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/68#issuecomment-888224776 
+# for more details.
+
 FROM php:7.3-apache-buster
 
 # Install apt packages
