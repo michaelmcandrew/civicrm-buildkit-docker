@@ -59,18 +59,17 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   unzip \
   vim \
   zip \
-
   && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
 RUN docker-php-ext-install bcmath \
-{% if php_version in ['7.3'] %}
-  && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
-{% else %}
-  && docker-php-ext-configure gd --with-jpeg \
-{% endif %}
-  && docker-php-ext-install gd \
+  {% if php_version in ['7.3'] %}
+&& docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
+  {% else %}
+&& docker-php-ext-configure gd --with-jpeg \
+  {% endif %}
+&& docker-php-ext-install gd \
   && docker-php-ext-install gettext \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install imap \
@@ -109,8 +108,8 @@ WORKDIR /buildkit
 ENV PATH="/buildkit/bin:${PATH}"
 
 RUN git init . \
-    && git remote add origin https://github.com/civicrm/civicrm-buildkit.git \
-    && git pull origin master
+  && git remote add origin https://github.com/civicrm/civicrm-buildkit.git \
+  && git pull origin master
 
 # Need to create this before we configure apache, otherwise it will complain
 RUN mkdir -p .amp/apache.d
