@@ -59,7 +59,6 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   unzip \
   vim \
   zip \
-
   && rm -r /var/lib/apt/lists/*
 
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
@@ -105,8 +104,8 @@ WORKDIR /buildkit
 ENV PATH="/buildkit/bin:${PATH}"
 
 RUN git init . \
-    && git remote add origin https://github.com/civicrm/civicrm-buildkit.git \
-    && git pull origin master
+  && git remote add origin https://github.com/civicrm/civicrm-buildkit.git \
+  && git pull origin master
 
 # Need to create this before we configure apache, otherwise it will complain
 RUN mkdir -p .amp/apache.d
