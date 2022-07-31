@@ -1,4 +1,5 @@
 build/*
 !build/.gitkeep
+!build/.vscode
 extra/*
 !extra/.gitkeep
