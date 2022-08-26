@@ -15,10 +15,10 @@ The [`docker-compose.yml`](docker-compose.yml) file in this repository is a good
 1. Ensure you meet the requirements (`docker` and `git`)
 1. Clone this repository
 2. From the repository root, run `docker-compose up -d` to start the containers defined in the `docker-compose.yml` file
-3. Create a WordPres demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
+3. Create a WordPress demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
 4. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
 
-In order to 'interact' with your codebase with comand line tools such civix etc, you'll need to run a bash shell 'within' the container. Launch a bash shell in the container with `docker-compose exec -u buildkit civicrm bash`.
+In order to 'interact' with your codebase with command line tools such civix etc, you'll need to run a bash shell 'within' the container. Launch a bash shell in the container with `docker-compose exec -u buildkit civicrm bash`.
 
 Most issues that people report with CiviCRM buildkit on Docker turn out to be CiviCRM buildkit issues - please consult the [Buildkit documentation](https://docs.civicrm.org/dev/en/latest/tools/buildkit/).
 
@@ -26,13 +26,13 @@ Most issues that people report with CiviCRM buildkit on Docker turn out to be Ci
 
 Login to a bash shell in the container: `docker-compose exec -u buildkit civicrm bash`
 
-Execute a command in the conatiner `docker-compose exec -u buildkit civicrm <COMMAND>`
+Execute a command in the container `docker-compose exec -u buildkit civicrm <COMMAND>`
 
 ### The `/buildkit/build` directory
 
 The `build` directory of this repository _is mounted into the civicrm container_ at `/buildkit/build`. Builds created in the container will be visible here which allows files to be edited directly on the host.
 
-You may notice that all the files that buildkit creates in the build directory are gitignored. This makes sense from this repositories point of view, but can be annoying if you are working on files in this directory. For example, in Visual Studio Code these files appear greyed out and are exlcuded from search results.
+You may notice that all the files that buildkit creates in the build directory are gitignored. This makes sense from this repositories point of view, but can be annoying if you are working on files in this directory. For example, in Visual Studio Code these files appear greyed out and are excluded from search results.
 
 As a workaround, you may want to open the build directory directly. It has a `.vscode` folder that requests that vscode ignores the git repository in its parent folder, hence files do not appear greyed out.
 
@@ -72,7 +72,7 @@ See [publish/README.md](publish/README.md) for instructions on using CiviCRM con
 
 ### UID and GID conflicts
 
-The mounts we use for `/buildkit/build` and `/extra` share UIDs and GIDs between the host and container. The container expects them to both be 1000. If you want to use a different UID or GID (e.g. because your user does not ahve a UID and GID of 1000, you can create a custom image that passes BUILDKIT_UID and BUILDKIT_GID as arguments.
+The mounts we use for `/buildkit/build` and `/extra` share UIDs and GIDs between the host and container. The container expects them to both be 1000. If you want to use a different UID or GID (e.g. because your user does not have a UID and GID of 1000, you can create a custom image that passes BUILDKIT_UID and BUILDKIT_GID as arguments.
 
 ## Custom images
 
