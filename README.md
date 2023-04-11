@@ -1,5 +1,7 @@
 # CiviCRM buildkit on Docker
 
+**MOVED TO https://lab.civicrm.org/michaelmcandrew/civicrm-buildkit-docker**
+
 [CiviCRM buildkit on Docker](https://hub.docker.com/r/michaelmcandrew/civicrm-buildkit) is thin wrapper around CiviCRM's buildkit, allowing it to be run in a docker container.
 
 Note: CiviCRM buildkit is primarily a development tool - it is not designed for production hosting. If you are looking for CiviCRM docker containers designed for hosting, see https://lab.3sd.io/tools/civicrm-buildkit.
@@ -14,9 +16,9 @@ The [`docker-compose.yml`](docker-compose.yml) file in this repository is a good
 
 1. Ensure you meet the requirements (`docker` and `git`)
 1. Clone this repository
-2. From the repository root, run `docker-compose up -d` to start the containers defined in the `docker-compose.yml` file
-3. Create a WordPress demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
-4. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
+1. From the repository root, run `docker-compose up -d` to start the containers defined in the `docker-compose.yml` file
+1. Create a WordPress demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
+1. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
 
 In order to 'interact' with your codebase with command line tools such civix etc, you'll need to run a bash shell 'within' the container. Launch a bash shell in the container with `docker-compose exec -u buildkit civicrm bash`.
 
@@ -38,7 +40,7 @@ As a workaround, you may want to open the build directory directly. It has a `.v
 
 ### Debugging
 
-The container includes and configures the Xdebug php extension.  See `civicrm/docker-civicrm-entrypoint` for the relevant configuration.
+The container includes and configures the Xdebug php extension. See `civicrm/docker-civicrm-entrypoint` for the relevant configuration.
 
 The build directory also contains the relevant configuration for Visual Studio Code (in the `build/.vscode/launch.json` file). All you should need to do is install the [Visual Studio Code Xdebug extension](https://marketplace.visualstudio.com/items?itemName=kakumei.php-xdebug).
 
@@ -97,10 +99,10 @@ New docker images are released nightly on Docker Hub at <https://hub.docker.com/
 
 The `docker-compose.yml` defines the following containers:
 
-* **civicrm** (serves the sites; contains build and admin tools like `civibuild`, `cv`, `civix` etc.)
-* **mysql**
-* **phpmyadmin** for easier MySQL admin
-* **maildev** to catch outbound email
+- **civicrm** (serves the sites; contains build and admin tools like `civibuild`, `cv`, `civix` etc.)
+- **mysql**
+- **phpmyadmin** for easier MySQL admin
+- **maildev** to catch outbound email
 
 We stick with the defaults and follow best practice whenever possible. When CiviCRM best practice and Docker best practice are in conflict we typically have to do things the CiviCRM way and make a note in the 'cloud native' project of the steps we could take to make CiviCRM more Docker friendly (e.g. environment variables to configure SMTP).
 
