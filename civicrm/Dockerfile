@@ -2,7 +2,7 @@
 # See https://github.com/michaelmcandrew/civicrm-buildkit-docker/issues/68#issuecomment-888224776 
 # for more details.
 
-FROM php:7.4-apache-buster
+FROM php:8.1-apache-buster
 
 # Install apt packages
 #
