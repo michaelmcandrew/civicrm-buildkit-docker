@@ -15,10 +15,10 @@ The [`docker-compose.yml`](docker-compose.yml) file in this repository is a good
 ### Get started
 
 1. Ensure you meet the requirements (`docker` and `git`)
-1. Clone this repository
-1. From the repository root, run `docker-compose up -d` to start the containers defined in the `docker-compose.yml` file
-1. Create a WordPress demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
-1. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
+2. Clone this repository
+3. From the repository root, run `docker-compose up -d` to start the containers defined in the `docker-compose.yml` file
+4. Create a WordPress demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
+5. Navigate to your new CiviCRM development site at <http://wpmaster.localhost:7979>
 
 In order to 'interact' with your codebase with command line tools such civix etc, you'll need to run a bash shell 'within' the container. Launch a bash shell in the container with `docker-compose exec -u buildkit civicrm bash`.
 
