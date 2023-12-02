@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="Third Sector Design CiviCRM on WordPress" namespace="ThirdSectorDesign">
+
+    <rule ref="Drupal" />
+    <arg name="extensions" value="php" />
+
+</ruleset>
