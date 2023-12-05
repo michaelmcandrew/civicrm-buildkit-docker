@@ -18,7 +18,7 @@ The [`docker-compose.yml`](docker-compose.yml) file in this repository is a good
 1. Clone this repository
 1. From the repository root, run `docker-compose up -d` to start the containers defined in the `docker-compose.yml` file
 1. Create a WordPress demo site with `docker-compose exec -u buildkit civicrm civibuild create wp-demo`
-1. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7979>
+1. Navigate to your new CiviCRM development site at <http://dmaster.localhost:7890>
 
 In order to 'interact' with your codebase with command line tools such civix etc, you'll need to run a bash shell 'within' the container. Launch a bash shell in the container with `docker-compose exec -u buildkit civicrm bash`.
 
@@ -50,17 +50,17 @@ We mount the `extra` directory of this repository at `/extra` in the container f
 
 ### Site URLs
 
-By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:7979`. This makes it simple to create multiple builds in the same container.
+By default, new builds created with this Docker image are created at `http://[SITE_NAME].localhost:7890`. This makes it simple to create multiple builds in the same container.
 
 Other URLs can be passed to the civibuild command, however, you will need to ensure any domains are resolved appropriately, e.g. by adding entries to the `/etc/hosts` file.
 
 ### phpMyAdmin
 
-The default `docker-compose.yml` configuration includes phpMyAdmin which should be available at <http://localhost:8081>.
+The default `docker-compose.yml` configuration includes phpMyAdmin which should be available at <http://localhost:7891>.
 
 ### Development email
 
-The default `docker-compose.yml` configuration maildev which should be available at <http://localhost:8082>.
+The default `docker-compose.yml` configuration maildev which should be available at <http://localhost:7892>.
 
 Maildev will collect all email sent from the civicrm container.
 

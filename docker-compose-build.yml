@@ -15,7 +15,7 @@ services:
     links:
       - mysql
     ports:
-      - "7979:7979"
+      - "7890:7890"
     volumes:
       - buildkit:/buildkit
       - ./build:/buildkit/build
@@ -39,7 +39,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "8081:80"
+      - "7891:80"
     links:
       - mysql
     environment:
@@ -51,7 +51,7 @@ services:
   maildev:
     image: djfarrelly/maildev
     ports:
-      - "8082:80"
+      - "7892:80"
     restart: unless-stopped
 
 volumes:

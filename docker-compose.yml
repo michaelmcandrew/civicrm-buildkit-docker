@@ -9,7 +9,7 @@ services:
     links:
       - mysql
     ports:
-      - "7979:7979"
+      - "7980:7980"
     volumes:
       - buildkit:/buildkit
       - ./build:/buildkit/build
@@ -22,7 +22,7 @@ services:
       - git-cache:/buildkit/app/tmp/git-cache
     restart: unless-stopped
   mysql:
-    image: mysql:5.7
+    image: michaelmcandrew/civicrm-mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: buildkit
     volumes:
@@ -32,7 +32,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "8081:80"
+      - "7981:80"
     links:
       - mysql
     environment:
@@ -44,7 +44,7 @@ services:
   maildev:
     image: djfarrelly/maildev
     ports:
-      - "8082:80"
+      - "7982:80"
     restart: unless-stopped
 
 volumes:
