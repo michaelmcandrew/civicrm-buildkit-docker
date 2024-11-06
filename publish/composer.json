@@ -1,7 +1,7 @@
 {
     "name": "michael/publish",
     "require": {
-        "twig/twig": "^2.4"
+        "twig/twig": "^3.11"
     },
     "authors": [
         {
